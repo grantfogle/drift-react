@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-
-const styles = {
-    topNav: {
-        height: 60,
-        backgroundColor: '#74b9ff'
-    }
-}
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const TopNavigation = () => {
     return (
         <Fragment>
-            <AppBar position='static' className={styles.topNav}>
-                asdfasfd
-                {/* <Toolbar>asdfasdf</Toolbar> */}
+            <AppBar
+                position='static'>
+                <Toolbar variant="dense">
+                    <Typography>
+                        Drift
+                    </Typography>
+                </Toolbar>
             </AppBar>
         </Fragment>
     );

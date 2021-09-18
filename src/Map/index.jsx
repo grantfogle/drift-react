@@ -2,6 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './style.css';
 import 'leaflet/dist/leaflet.css';
+import RiverInfo from './RiverInfo';
 
 const Map = () => {
     return (
@@ -16,6 +17,7 @@ const Map = () => {
                         A pretty CSS3 popup. <br /> Easily customizable.
                     </Popup>
                 </Marker>
+                <RiverInfo />
             </MapContainer>
         </div>
     );
