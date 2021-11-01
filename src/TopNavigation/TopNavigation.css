@@ -1,0 +1,13 @@
+.menu {
+    display: flex;
+    justify-content: space-between;
+}
+.right-menu {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    color: #fff;
+}
+.Button {
+    color: #fff;
+}

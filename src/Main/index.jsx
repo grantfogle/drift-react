@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Map from '../Map';
-import TopNavigation from '../TopNavigation';
+import TopNavigation from '../TopNavigation/TopNavigation';
 import './style.css';
 
 const Main = () => {
