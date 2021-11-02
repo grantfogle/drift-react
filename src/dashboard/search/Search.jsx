@@ -5,7 +5,8 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import DirectionsIcon from '@mui/icons-material/Directions';
+import DirectionsIcon from '@mui/icons-material/DirectionsCar';
+// import DirectionsIcon from '@mui/icons-material/DirectionsIcon';
 
 const Search = () => {
     return (
