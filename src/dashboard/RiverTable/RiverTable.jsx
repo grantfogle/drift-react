@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -49,21 +47,9 @@ const RiverTable = () => {
     ];
     return (
         <>
-
-            <Box sx={{
-                height: 40,
-                border: '1px solid #dfdfdf',
-                width: '100%',
-            }}>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group">
-                    <Button>One</Button>
-                    <Button>Two</Button>
-                    <Button>Three</Button>
-                </ButtonGroup>
-            </Box>
             <Box>
                 <TableContainer component={Paper}>
-                    <Table sx={{ maxWidth: 900, margin: 'auto' }} aria-label="simple table">
+                    <Table sx={{ maxWidth: 1200, margin: 'auto' }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>River Section</TableCell>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
@@ -6,8 +6,10 @@ import TextField from '@mui/material/TextField';
 const SearchForm = () => {
     const filterOptions = createFilterOptions({
         matchFrom: 'start',
-        stringify: (option) => option.state,
+        stringify: (option) => option.label,
     });
+
+    const [isError, setIsError] = useState(false);
 
     const states = [
         { label: 'Colorado' },
@@ -39,7 +41,7 @@ const SearchForm = () => {
                 id="combo-box-demo"
                 options={states}
                 sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Movie" />}
+                renderInput={(params) => <TextField {...params} label="State" />}
             />
         </div>
     );
