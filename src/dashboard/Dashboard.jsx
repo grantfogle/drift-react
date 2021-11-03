@@ -4,6 +4,9 @@ import SearchForm from './search/SearchForm';
 import RiverTable from './RiverTable/RiverTable';
 
 const Dashboard = () => {
+
+    // rivers in iceland, british columbia, usa, new zealand, europe, etc.
+
     return (
         <>
             <h2>Search rivers</h2>
