@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,33 +9,65 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import WavesIcon from '@mui/icons-material/Waves';
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 const RiverTable = () => {
+    const [displayRowId, setDisplayRow] = useState(0);
 
-    function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
+    function createData(id, name, calories, fat, carbs, protein) {
+        return { id, name, calories, fat, carbs, protein };
+    }
+
+    const displayDropdown = (rowId) => {
+        if (rowId !== displayRowId) {
+            setDisplayRow(rowId);
+            return;
+        }
+        setDisplayRow(0);
+    }
+
+    const displayRiverTableRow = (rowId) => {
+        if (rowId === displayRowId) {
+            return (
+                <TableRow>
+                    <div>
+                        Dogs
+                    </div>
+                </TableRow>
+            );
+        }
     }
 
     const rows = [
-        createData('Upper Colorado River', 159, 4.0, 'Colorado River', 'CO'),
-        createData('Ogden River', 237, 3.0, 'Green River', 'UT'),
-        createData('Yellowstone River (Bozeman)', 262, 2.5, 'Madison River', 'MT'),
-        createData('Eagle River (Red Cliff)', 305, 3.7, 'Colorado River', 'CO'),
-        createData('Green River', 356, 4.2, 'Green River', 'UT'),
+        createData(1, 'Upper Colorado River', 159, 4.0, 'Colorado River', 'CO'),
+        createData(2, 'Ogden River', 237, 3.0, 'Green River', 'UT'),
+        createData(3, 'Yellowstone River (Bozeman)', 262, 2.5, 'Madison River', 'MT'),
+        createData(4, 'Eagle River (Red Cliff)', 305, 3.7, 'Colorado River', 'CO'),
+        createData(5, 'Green River', 356, 4.2, 'Green River', 'UT'),
     ];
     return (
         <>
-            <div className="river-table-nav"></div>
-            <h3>River table works</h3>
-            <Box sx={{
 
+            <Box sx={{
+                height: 40,
+                border: '1px solid #dfdfdf',
+                width: '100%',
             }}>
+                <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                    <Button>One</Button>
+                    <Button>Two</Button>
+                    <Button>Three</Button>
+                </ButtonGroup>
+            </Box>
+            <Box>
                 <TableContainer component={Paper}>
                     <Table sx={{ maxWidth: 900, margin: 'auto' }} aria-label="simple table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>River Section</TableCell>
-                                <TableCell align="right">Flow (cfs)</TableCell>
+                                <TableCell align="right">Flow (cfs) <WavesIcon /></TableCell>
                                 <TableCell align="right">Rating</TableCell>
                                 <TableCell align="right">Watershed</TableCell>
                                 <TableCell align="right">State</TableCell>
@@ -41,18 +75,22 @@ const RiverTable = () => {
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right">{row.calories}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="right">{row.carbs}</TableCell>
-                                    <TableCell align="right">{row.protein}</TableCell>
-                                </TableRow>
+                                <>
+                                    <TableRow
+                                        key={row.name}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row">
+                                            <StarOutlineIcon />
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="right">{row.calories}</TableCell>
+                                        <TableCell align="right">{row.fat}</TableCell>
+                                        <TableCell align="right">{row.carbs}</TableCell>
+                                        <TableCell onClick={() => displayDropdown(row.id)} align="right">{row.protein} <ArrowDropDownIcon /></TableCell>
+                                    </TableRow>
+                                    {displayRiverTableRow(row.id)}
+                                </>
                             ))}
                         </TableBody>
                     </Table>
