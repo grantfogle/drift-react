@@ -1,0 +1,15 @@
+
+.river-search {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 800px;
+    height: 200px;
+}
+.river-autocomplete {
+    width: 500px;
+}
+.state-autocomplete {
+    width: 250px;
+}

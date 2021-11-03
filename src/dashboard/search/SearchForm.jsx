@@ -9,21 +9,39 @@ const SearchForm = () => {
         stringify: (option) => option.state,
     });
 
-    const states = [{ state: 'Colorado', state: 'Utah', state: 'Montana' }];
+    const states = [
+        { label: 'Colorado' },
+        { label: 'Utah' },
+        { label: 'Montana' }
+    ];
+
+    const rivers = [
+        { label: 'Colorado River' },
+        { label: 'Green River' },
+        { label: 'Bitterroot River' },
+        { label: 'Eagle River' },
+        { label: 'Ogden River' },
+        { label: 'Yellowstone River' }
+    ];
 
 
     return (
-        <form>
-            <input placeholder="River name" />
-            <input placeholder="State" />
-
+        <div className="river-search">
             <Autocomplete
-                className=""
+                disablePortal
+                id="combo-box-demo"
+                options={rivers}
+                sx={{ width: 450 }}
+                renderInput={(params) => <TextField {...params} label="River" />}
+            />
+            <Autocomplete
+                disablePortal
+                id="combo-box-demo"
                 options={states}
-                filterOptions={filterOptions}
-                renderInput={(params) => <TextField {...params} label="Custom filter" />}
-            />;
-        </form>
+                sx={{ width: 300 }}
+                renderInput={(params) => <TextField {...params} label="Movie" />}
+            />
+        </div>
     );
 }
 

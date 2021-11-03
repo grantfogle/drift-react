@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Map from '../Map';
 import TopNavigation from '../TopNavigation/TopNavigation';
 import './style.css';
