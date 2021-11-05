@@ -1,6 +1,6 @@
 import React from 'react';
-import Map from '../Map';
-import TopNavigation from '../TopNavigation/TopNavigation';
+import Map from '../map/Map'
+import TopNavigation from '../topNavigation/TopNavigation';
 import './style.css';
 import Dashboard from '../dashboard/Dashboard';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './style.css';
 import 'leaflet/dist/leaflet.css';
-import RiverInfo from './RiverInfo';
+import RiverInfo from './riverInfo/RiverInfo';
 
 const Map = () => {
     return (
