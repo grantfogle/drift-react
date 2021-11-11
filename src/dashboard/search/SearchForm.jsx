@@ -34,7 +34,6 @@ const SearchForm = () => {
         { label: 'Yellowstone River' }
     ];
 
-
     return (
         <>
             <div className="river-search">
