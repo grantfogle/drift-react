@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
-import RiverContext from '../../context/RiverContext';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
+import { RiverContext } from '../../context/RiverContext';
 
 
 const SearchForm = () => {
     // const {searchRiver, setSearchRiver} = useContext(RiverContext);
-
+    const rivContext = useContext(RiverContext);
+    console.log(rivContext);
     const filterOptions = createFilterOptions({
         matchFrom: 'start',
         stringify: (option) => option.label,

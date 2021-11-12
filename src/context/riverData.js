@@ -101,4 +101,14 @@ export const riverData = [
     }
 ];
 
-export const usersFavoritedRivers = [];
+export const watershedData = [
+    'Colorado River',
+    'South Platte',
+    'Arkansas',
+    'Rio Grande',
+    'San Juan',
+    'Gunnison',
+    'North Platte'
+];
+
+export const usersFavoritedRivers = [1, 2, 4, 6];

@@ -10,7 +10,6 @@ const Dashboard = () => {
     return (
         <RiverProvider>
             <h2>Search rivers</h2>
-            {/* <Search /> */}
             <SearchForm />
             <RiverTable />
         </RiverProvider>

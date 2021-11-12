@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { RiverContext } from '../../context/RiverContext';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -12,8 +13,10 @@ import WavesIcon from '@mui/icons-material/Waves';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 const RiverTable = () => {
+    const rivContext = useContext(RiverContext);
     const [displayRowId, setDisplayRow] = useState(0);
 
+    console.log(rivContext.riverState[0].rivers);
     function createData(id, name, calories, fat, carbs, protein) {
         return { id, name, calories, fat, carbs, protein };
     }
