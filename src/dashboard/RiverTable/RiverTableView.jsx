@@ -40,14 +40,19 @@ const RiverTableView = () => {
               return (
                 <TableRow key={id}>
                   <TableCell>
+                    {/*on click save river to users favorites*/}
                     <StarOutlineIcon />
                   </TableCell>
                   <TableCell>
+                    {/*on click send to map*/}
                     {river} ({geoTag})
                   </TableCell>
                   <TableCell>{currentFlowCFS}</TableCell>
+                  {/*show alerts on river status in pretty format, high h20, etc*/}
                   <TableCell>{alerts}</TableCell>
                   <TableCell>
+                    {/*on dropdown show graph of recent river info*/}
+                    {/*on click of text go to map*/}
                     {watershed} <KeyboardArrowDownIcon />
                   </TableCell>
                 </TableRow>
@@ -56,11 +61,6 @@ const RiverTableView = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {/* //   <ul>
-    //     {rivContext.riverState[0].rivers.map(river => ( */}
-      {/* //       <li>{river.river}</li>
-    //     ))}
-    //   </ul> */}
     </>
   );
 };

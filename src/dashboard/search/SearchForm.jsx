@@ -34,6 +34,7 @@ const SearchForm = () => {
 
   return (
     <>
+      <h2>Search rivers</h2>
       <div className="river-search">
         <Autocomplete
           disablePortal
