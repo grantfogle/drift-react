@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { RiverContext } from "../../context/RiverContext";
 
 const SearchForm = () => {
-  // const {searchRiver, setSearchRiver} = useContext(RiverContext);
+  const [riverValue, setRiverValue] = useState("");
   const rivContext = useContext(RiverContext);
   const filterOptions = createFilterOptions({
     matchFrom: "start",
@@ -24,10 +24,10 @@ const SearchForm = () => {
   ];
 
   const rivers = [
-    { label: "Colorado River" },
-    { label: "Green River" },
-    { label: "Bitterroot River" },
+    { label: "Colorado" },
+    { label: "Roaring Fork" },
     { label: "Eagle River" },
+    { label: "Gore Creek" },
     { label: "Ogden River" },
     { label: "Yellowstone River" }
   ];
@@ -40,6 +40,11 @@ const SearchForm = () => {
           disablePortal
           id="combo-box-demo"
           options={rivers}
+          value={riverValue}
+          onChange={(event, value) => {
+            console.log(event, value);
+            setRiverValue(value.label);
+          }}
           sx={{ width: 450 }}
           renderInput={params => <TextField {...params} label="River" />}
         />
