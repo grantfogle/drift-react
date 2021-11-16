@@ -11,8 +11,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const RiverTableView = () => {
-  const rivContext = useContext(RiverContext);
-  console.log(rivContext.riverState[0].rivers);
+  const { riverState } = useContext(RiverContext);
   return (
     <>
       <TableContainer component={Paper} sx={{ width: "800px", margin: "auto" }}>
@@ -27,7 +26,7 @@ const RiverTableView = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rivContext.riverState[0].rivers.map(riverData => {
+            {riverState.displayRivers.map(riverData => {
               const {
                 id,
                 state,

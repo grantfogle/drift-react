@@ -4,15 +4,14 @@ import { riverStateReducer } from './riverStateReducer';
 
 export const RiverContext = createContext();
 
-const riverDashboardState = [{
+const riverDashboardState = {
     rivers: riverData,
     watershed: watershedData,
     displayRivers: [],
     showRiverTable: false,
     searchByRiver: '',
     searchByWatershed: '',
-}];
-
+};
 
 const RiverProvider = ({ children }) => {
     const [riverState, dispatch] = useReducer(riverStateReducer, riverDashboardState);
