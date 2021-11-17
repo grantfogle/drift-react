@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import RiverTableRow from './RiverTableRow';
 
 const RiverTableView = () => {
   const { riverState } = useContext(RiverContext);
@@ -27,35 +28,7 @@ const RiverTableView = () => {
           </TableHead>
           <TableBody>
             {riverState.displayRivers.map(riverData => {
-              const {
-                id,
-                state,
-                river,
-                watershed,
-                geoTag,
-                currentFlowCFS,
-                alerts
-              } = riverData;
-              return (
-                <TableRow key={id}>
-                  <TableCell>
-                    {/*on click save river to users favorites*/}
-                    <StarOutlineIcon />
-                  </TableCell>
-                  <TableCell>
-                    {/*on click send to map*/}
-                    {river} ({geoTag})
-                  </TableCell>
-                  <TableCell>{currentFlowCFS}</TableCell>
-                  {/*show alerts on river status in pretty format, high h20, etc*/}
-                  <TableCell>{alerts}</TableCell>
-                  <TableCell>
-                    {/*on dropdown show graph of recent river info*/}
-                    {/*on click of text go to map*/}
-                    {watershed} <KeyboardArrowDownIcon />
-                  </TableCell>
-                </TableRow>
-              );
+              return <RiverTableRow key={riverData.id} {...riverData} />;
             })}
           </TableBody>
         </Table>

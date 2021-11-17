@@ -111,4 +111,4 @@ export const watershedData = [
     'North Platte'
 ];
 
-export const usersFavoritedRivers = [1, 2, 4, 6];
+export const userFavorited = [1, 2, 4, 6];
