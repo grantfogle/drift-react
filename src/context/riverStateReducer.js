@@ -43,7 +43,7 @@ export const riverStateReducer = (state, action) => {
     }
 
     if (action.type === 'WATERSHED_SELECT') {
-        const filterDisplayRiversByWatershed = state.rivers.filter(river => river.river === action.payload.watershed);
+        const filterDisplayRiversByWatershed = state.rivers.filter(river => river.watershed === action.payload.watershed);
         return {
             ...state,
             displayRivers: filterDisplayRiversByWatershed
