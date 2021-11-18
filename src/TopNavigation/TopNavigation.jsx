@@ -11,11 +11,11 @@ const TopNavigation = () => {
     return (
         <Fragment>
             <AppBar
-                position="static">
-                <Toolbar variant="dense" className="menu">
+                position='static'>
+                <Toolbar variant='dense' className='menu'>
                     <Typography>Drift</Typography>
-                    <div className="right-menu">
-                        <Button color="white">Map</Button>
+                    <div className='right-menu'>
+                        <Button>Map</Button>
                         <Button>River Info</Button>
                         <SettingsSubNav />
                     </div>

@@ -1,3 +1,5 @@
+import { accordionActionsClasses } from "@mui/material";
+
 export const riverStateReducer = (state, action) => {
     if (action.type === 'RIVER_SELECT') {
         const filteredDisplayedRiver = state.rivers.filter(river => river.river === action.payload.riverName);
@@ -21,12 +23,31 @@ export const riverStateReducer = (state, action) => {
         }
     }
 
+    if (action.type === 'SHOW_FAVORITES') {
+        const displayFavoritesArr = state.rivers.filter(river => {
+            if (state.userFavorites.includes(river.id)) {
+                return river;
+            }
+        });
+        return {
+            ...state,
+            displayRivers: displayFavoritesArr
+        }
+    }
+
+    if (action.type === 'SHOW_EXPLORE') {
+        return {
+            ...state,
+            displayRivers: state.rivers
+        }
+    }
+
     if (action.type === 'WATERSHED_SELECT') {
         const filterDisplayRiversByWatershed = state.rivers.filter(river => river.river === action.payload.watershed);
         return {
             ...state,
             displayRivers: filterDisplayRiversByWatershed
-        };
+        }
     }
     return state;
 }

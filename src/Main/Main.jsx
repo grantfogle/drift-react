@@ -6,8 +6,6 @@ import Dashboard from "../dashboard/Dashboard";
 import RiverProvider, { RiverContext } from "../context/RiverContext";
 
 const Main = () => {
-  const rivContent = useContext(RiverContext);
-  console.log("hiiiiit", rivContent);
   return (
     <RiverProvider>
       <div className="main">

@@ -5,7 +5,7 @@ import Search from './search/Search';
 import SearchForm from './search/SearchForm';
 import RiverTable from './riverTable/RiverTable';
 import RiverTableView from './riverTable/RiverTableView';
-import RiverProvider from '../context/RiverContext';
+// import RiverProvider from '../context/RiverContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -18,11 +18,15 @@ const Dashboard = () => {
 
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
-    // dispatch({ type: 'SHOW_FAVORITES', })
+    if (newValue === 'favorites') {
+      dispatch({ type: 'SHOW_FAVORITES' })
+    } else {
+      dispatch({ type: 'SHOW_EXPLORE' })
+    }
   }
 
   return (
-    <RiverProvider>
+    <>
       <SearchForm />
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <Tabs
@@ -35,7 +39,7 @@ const Dashboard = () => {
         </Tabs>
       </Box>
       <RiverTableView />
-    </RiverProvider>
+    </>
   );
 };
 
