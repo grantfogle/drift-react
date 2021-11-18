@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { RiverContext } from "../../context/RiverContext";
-
+import { RiverContext } from '../../context/RiverContext';
+import RiverAlert from './riverAlert/RiverAlert';
 
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 
 import StarIcon from '@mui/icons-material/Star';
-import StarOutlineIcon from "@mui/icons-material/StarOutline";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import StarOutlineIcon from '@mui/icons-material/StarOutline';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 import Stack from '@mui/material/Stack';
@@ -41,7 +41,7 @@ const RiverTableRow = (riverData) => {
         return showDropdown ? <KeyboardArrowLeftIcon /> : <KeyboardArrowDownIcon />;
     }
 
-    const displayFavoriteArrow = () => {
+    const displayFavoriteStatus = () => {
         return favorite ?
             <StarIcon sx={{ color: '#f1c40f' }} onClick={() => {
                 setFavorite(false);
@@ -55,21 +55,8 @@ const RiverTableRow = (riverData) => {
     }
 
     const displayRiverAlerts = () => {
-        // alert for high h20
-        // alert for muddy h20
-        // alert for frozen
-        // alert for warm water
-        // alert for low flows
-        // <Stack direction="row" spacing={1}>
-        //     <Chip icon={<FaceIcon />} label="With Icon" />
-        //     <Chip icon={<FaceIcon />} label="With Icon" variant="outlined" />
-        // </Stack>
         const alertStack = alerts.map(alert => {
-            switch(alert) {
-                case 'off color': 
-                    return <Chip icon={<FaceIcon />} label="With Icon" />
-                    break;
-            }
+            return <RiverAlert key={alert} alert={alert} />
         });
         return (
             <Stack direction='row' spacing={1}>
@@ -82,8 +69,7 @@ const RiverTableRow = (riverData) => {
         <>
             <TableRow key={id} >
                 <TableCell>
-                    {/*on click save river to users favorites*/}
-                    {displayFavoriteArrow()}
+                    {displayFavoriteStatus()}
                 </TableCell>
                 <TableCell>
                     {/*on click send to map*/}

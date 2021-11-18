@@ -7,7 +7,7 @@ export const riverData = [
         geoTag: 'Kremmling',
         currentFlowCFS: 1450,
         usgsId: '2355',
-        alerts: ['off color']
+        alerts: ['offColor', 'highWater']
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ export const riverData = [
         geoTag: 'Aspen',
         currentFlowCFS: 300,
         usgsId: '23552',
-        alerts: []
+        alerts: ['lowFlows', 'warmWater']
     },
     {
         id: 3,
@@ -47,7 +47,7 @@ export const riverData = [
         geoTag: 'Vail',
         currentFlowCFS: 200,
         usgsId: '235527',
-        alerts: []
+        alerts: ['warmWater']
     },
     {
         id: 6,
@@ -57,7 +57,7 @@ export const riverData = [
         geoTag: 'Deckers',
         currentFlowCFS: 320,
         usgsId: '235529',
-        alerts: []
+        alerts: ['lowFlows', 'warmWater']
     },
     {
         id: 7,
@@ -67,7 +67,7 @@ export const riverData = [
         geoTag: 'Dotsero',
         currentFlowCFS: 420,
         usgsId: '235520',
-        alerts: []
+        alerts: ['frozen']
     },
     {
         id: 8,
@@ -77,7 +77,7 @@ export const riverData = [
         geoTag: 'Gore Creek',
         currentFlowCFS: 2000,
         usgsId: '2355255',
-        alerts: []
+        alerts: ['highWater']
     },
     {
         id: 9,

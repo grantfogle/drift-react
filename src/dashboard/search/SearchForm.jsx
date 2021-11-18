@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { RiverContext } from "../../context/RiverContext";
+import { SliderValueLabel } from "@mui/material";
 
 const SearchForm = () => {
     const [riverValue, setRiverValue] = useState('');
@@ -43,12 +44,15 @@ const SearchForm = () => {
                     options={rivers}
                     value={riverValue}
                     onChange={(event, value) => {
+                        if (value === null) {
+                            value = '';
+                            setRiverValue('');
+                        }
                         if (value.label) {
                             rivContext.dispatch({ type: 'RIVER_SELECT', payload: { riverName: value.label } });
                             setRiverValue(value.label);
                             return;
                         }
-                        setRiverValue('');
                     }}
                     sx={{ width: 450 }}
                     renderInput={params => <TextField {...params} label="River" />}
@@ -59,12 +63,15 @@ const SearchForm = () => {
                     options={states}
                     value={watershedValue}
                     onChange={(event, value) => {
+                        if (value === null) {
+                            value = '';
+                            setRiverValue('');
+                        }
                         if (value.label) {
                             rivContext.dispatch({ type: 'WATERSHED_SELECT', payload: { watershed: value.label } });
                             setWatershedValue(value.label);
                             return;
                         }
-                        setWatershedValue('');
                     }}
                     sx={{ width: 300 }}
                     renderInput={params => <TextField {...params} label="Watershed" />}
