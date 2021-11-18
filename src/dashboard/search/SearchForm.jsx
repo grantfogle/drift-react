@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
+
 import TextField from "@mui/material/TextField";
 import { RiverContext } from "../../context/RiverContext";
 import { SliderValueLabel } from "@mui/material";
@@ -36,47 +38,48 @@ const SearchForm = () => {
 
     return (
         <>
-            <h2>Search rivers</h2>
-            <div className="river-search">
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={rivers}
-                    value={riverValue}
-                    onChange={(event, value) => {
-                        if (value === null) {
-                            value = '';
-                            setRiverValue('');
-                        }
-                        if (value.label) {
-                            rivContext.dispatch({ type: 'RIVER_SELECT', payload: { riverName: value.label } });
-                            setRiverValue(value.label);
-                            return;
-                        }
-                    }}
-                    sx={{ width: 450 }}
-                    renderInput={params => <TextField {...params} label="River" />}
-                />
-                <Autocomplete
-                    disablePortal
-                    id="combo-box-demo"
-                    options={states}
-                    value={watershedValue}
-                    onChange={(event, value) => {
-                        if (value === null) {
-                            value = '';
-                            setRiverValue('');
-                        }
-                        if (value.label) {
-                            rivContext.dispatch({ type: 'WATERSHED_SELECT', payload: { watershed: value.label } });
-                            setWatershedValue(value.label);
-                            return;
-                        }
-                    }}
-                    sx={{ width: 300 }}
-                    renderInput={params => <TextField {...params} label="Watershed" />}
-                />
-            </div>
+            <Box sx={{ paddingTop: '1em' }}>
+                <div className="river-search">
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={rivers}
+                        value={riverValue}
+                        onChange={(event, value) => {
+                            if (value === null) {
+                                value = '';
+                                setRiverValue('');
+                            }
+                            if (value.label) {
+                                rivContext.dispatch({ type: 'RIVER_SELECT', payload: { riverName: value.label } });
+                                setRiverValue(value.label);
+                                return;
+                            }
+                        }}
+                        sx={{ width: 450 }}
+                        renderInput={params => <TextField {...params} label="River" />}
+                    />
+                    <Autocomplete
+                        disablePortal
+                        id="combo-box-demo"
+                        options={states}
+                        value={watershedValue}
+                        onChange={(event, value) => {
+                            if (value === null) {
+                                value = '';
+                                setRiverValue('');
+                            }
+                            if (value.label) {
+                                rivContext.dispatch({ type: 'WATERSHED_SELECT', payload: { watershed: value.label } });
+                                setWatershedValue(value.label);
+                                return;
+                            }
+                        }}
+                        sx={{ width: 300 }}
+                        renderInput={params => <TextField {...params} label="Watershed" />}
+                    />
+                </div>
+            </Box>
         </>
     );
 };

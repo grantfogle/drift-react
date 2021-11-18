@@ -4,6 +4,8 @@ import RiverAlert from './riverAlert/RiverAlert';
 
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
+
 
 import StarIcon from '@mui/icons-material/Star';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
@@ -78,12 +80,10 @@ const RiverTableRow = (riverData) => {
                 <TableCell>{currentFlowCFS}</TableCell>
                 {/*show alerts on river status in pretty format, high h20, etc*/}
                 <TableCell>{displayRiverAlerts()}</TableCell>
-                <TableCell onClick={(e) => {
-                    return showDropdown ? setShowDropdown(false) : setShowDropdown(true);
-                }}>
-                    {/*on dropdown show graph of recent river info*/}
-                    {/*on click of text go to map*/}
-                    {watershed} {displayUpDownArrow()}
+                <TableCell
+                    onClick={(e) => showDropdown ? setShowDropdown(false) : setShowDropdown(true)}
+                >
+                    <Typography sx={{ display: 'flex', alignItems: 'center' }} variant='body2'>{watershed} {displayUpDownArrow()}</Typography>
                 </TableCell>
             </TableRow >
             {displayDropdown()}
