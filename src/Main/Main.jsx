@@ -9,9 +9,7 @@ const Main = () => {
   return (
     <RiverProvider>
       <div className="main">
-        <TopNavigation />
         <Dashboard />
-        {/* <Map /> */}
       </div>
     </RiverProvider>
   );
