@@ -21,18 +21,9 @@ function App() {
           <Route exact path="/" element={<Main />}></Route>
           <Route path="/map" element={<Map />}></Route>
         </Routes>
-        {/* <Main /> */}
       </div>
     </Router>
   );
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <Main />
-//     </div>
-//   );
-// }
 
 export default App;
