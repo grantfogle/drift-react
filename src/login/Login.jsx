@@ -19,7 +19,9 @@ const Login = () => {
         </Typography>
         <Box
           sx={{
-            backgroundColor: "#fff",
+            border: "solid",
+            borderWidth: "1px",
+            borderColor: "#fff",
             height: "400px",
             width: "300px",
             borderRadius: "10px",
