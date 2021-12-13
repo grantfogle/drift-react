@@ -1,5 +1,6 @@
 import React from "react";
-import Main from "../src/main/Main";
+import Main from "./main/Main";
+import Login from "./login/Login";
 import "./App.css";
 import Map from "./map/Map";
 import TopNavigation from "./topNavigation/TopNavigation";
@@ -18,7 +19,8 @@ function App() {
       <div className="App">
         <TopNavigation />
         <Routes>
-          <Route exact path="/" element={<Main />}></Route>
+          <Route exact path="/" element={<Login />}></Route>
+          <Route path="/dashboard" element={<Main />}></Route>
           <Route path="/map" element={<Map />}></Route>
         </Routes>
       </div>

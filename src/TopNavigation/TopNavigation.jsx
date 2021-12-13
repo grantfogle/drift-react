@@ -15,8 +15,8 @@ const TopNavigation = () => {
         <Toolbar variant="dense" className="menu">
           <Typography>Drift</Typography>
           <div className="right-menu">
-            <Button>
-              <Link to="/">Dashboard</Link>
+            <Button sx={{ border: "1px solid white", borderRadius: "5px" }}>
+              <Link to="/dashboard">Dashboard</Link>
             </Button>
             <Button>
               <Link to="/map">Map</Link>
