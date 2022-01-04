@@ -6,12 +6,9 @@ const PracticeForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(refContainer.current.value);
-        console.log(divContainer)
     }
 
     useEffect(() => {
-        console.log(refContainer.current);
         refContainer.current.focus();
     })
 
