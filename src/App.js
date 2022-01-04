@@ -2,7 +2,7 @@ import React from "react";
 import Main from "../src/main/Main";
 import "./App.css";
 import Map from "./map/Map";
-import Login from './authentication';
+import Authentication from './authentication/Authentication';
 import TopNavigation from "./topNavigation/TopNavigation";
 import {
   BrowserRouter as Router,
@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Login />}></Route>
+          <Route path="/" element={<Authentication />}></Route>
           <Route path="/dashboard" element={<Main />}></Route>
           <Route path="/map" element={<Map />}></Route>
         </Routes>
