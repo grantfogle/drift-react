@@ -8,6 +8,7 @@ import RiverProvider, { RiverContext } from "../context/RiverContext";
 const Main = () => {
   return (
     <RiverProvider>
+      <TopNavigation />
       <div className="main">
         <Dashboard />
       </div>
