@@ -18,13 +18,12 @@ const Authentication = () => {
         return (loginTabValue === 'login') ? <Login /> : <SignUp />
     }
 
-
     return (
         <>
             <Box sx={{ margin: 0, height: '100%', width: '100%', backgroundColor: '#3498db', display: 'flex', alignItems: 'center' }}>
                 <Container sx={{ backgroundColor: '#fff', borderRadius: 10, height: 600, padding: 5 }} maxWidth="sm">
                     <Box sx={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
-                        <Typgraphy variant='h4'>Login to your drift account</Typgraphy>
+                        <Typgraphy variant='h4'>Log in to Your Drift Account</Typgraphy>
                         <Tabs
                             value={loginTabValue}
                             onChange={handleTabChange}
