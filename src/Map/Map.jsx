@@ -7,7 +7,7 @@ import RiverInfo from './riverInfo/RiverInfo';
 const Map = () => {
     return (
         <div className='map-container'>
-            <MapContainer center={[39.3689, -107.0328]} zoom={13} scrollWheelZoom={false} className='map'>
+            <MapContainer center={[39.3689, -107.0328]} zoom={13} scrollWheelZoom={true} className='map'>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
