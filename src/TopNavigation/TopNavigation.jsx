@@ -16,10 +16,10 @@ const TopNavigation = () => {
           <Typography>Drift</Typography>
           <div className="right-menu">
             <Button>
-              <Link to="/">Dashboard</Link>
+              <Link to="/dashboard" style={{ textDecoration: 'none', color: '#fff' }}>Dashboard</Link>
             </Button>
             <Button>
-              <Link to="/map">Map</Link>
+              <Link to="/map" style={{ textDecoration: 'none', color: '#fff' }} >Map</Link>
             </Button>
             <SettingsSubNav />
           </div>
