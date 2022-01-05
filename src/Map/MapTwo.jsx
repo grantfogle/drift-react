@@ -23,7 +23,7 @@ const MapTwo = () => {
             <Marker position={[39.3689, -107.0328]}>
                 <Popup>
                     A pretty CSS3 popup. <br /> Easily customizable.
-    </Popup>
+                </Popup>
             </Marker>
         </MapContainer>
     </>

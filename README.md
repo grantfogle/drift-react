@@ -1,3 +1,26 @@
+# Drift React
+
+
+## Core Packages
+1. React Router
+2. Leaflet + Leaflet JS (Mapping Library)
+3. Material UI + Material Icons (Styling)
+
+## Features
+1. Login/Sign Up
+2. River Dashboard
+3. Map View
+4. User Profile
+
+## Demo
+## UI
+### Login
+### Home/Dashboard
+### Map View
+-
+## Project Deployed
+TBD (Coming Live January 2022)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
