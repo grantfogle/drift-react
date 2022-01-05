@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { RiverContext } from "../../context/RiverContext";
+import { RiverContext } from "../../../context/RiverContext";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";

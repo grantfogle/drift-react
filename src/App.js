@@ -1,10 +1,9 @@
 import React from "react";
-import Main from "../src/main/Main";
+import Main from "../src/components/main/Main";
 import "./App.css";
-import Map from "./map/Map";
-import MapTwo from "./map/MapTwo";
-import Authentication from './authentication/Authentication';
-import TopNavigation from "./topNavigation/TopNavigation";
+import Map from "./components/map/Map";
+import MapTwo from "./components/map/MapTwo";
+import Authentication from './components/authentication/Authentication';
 import {
   BrowserRouter as Router,
   Routes,

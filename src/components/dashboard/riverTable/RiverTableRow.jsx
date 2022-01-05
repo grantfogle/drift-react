@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { RiverContext } from '../../context/RiverContext';
+import { RiverContext } from "../../../context/RiverContext";
 import RiverAlert from './riverAlert/RiverAlert';
 
 import TableCell from "@mui/material/TableCell";
