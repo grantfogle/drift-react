@@ -1,5 +1,5 @@
 # Drift React
-
+Live project: TBD (Coming Live January 2022)
 
 ## Core Packages
 1. React Router
@@ -17,9 +17,6 @@
 ### Login
 ### Home/Dashboard
 ### Map View
--
-## Project Deployed
-TBD (Coming Live January 2022)
 
 # Getting Started with Create React App
 
