@@ -1,9 +1,9 @@
 import React from "react";
-import Main from "../src/main/Main";
+import Main from "./components/main/Main";
 import "./App.css";
-import Map from "./map/Map";
-import Authentication from './authentication/Authentication';
-import TopNavigation from "./topNavigation/TopNavigation";
+import Map from "./components/map/Map";
+import Authentication from './components/authentication/Authentication';
+import TopNavigation from "./components/topNavigation/TopNavigation";
 import {
   BrowserRouter as Router,
   Routes,

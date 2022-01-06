@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { RiverContext } from '../context/RiverContext';
+import { RiverContext } from '../../context/RiverContext';
 import Search from './search/Search';
 
 import SearchForm from './search/SearchForm';

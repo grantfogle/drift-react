@@ -3,7 +3,7 @@ import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 
 import TextField from "@mui/material/TextField";
-import { RiverContext } from "../../context/RiverContext";
+import { RiverContext } from "../../../context/RiverContext";
 import { SliderValueLabel } from "@mui/material";
 
 const SearchForm = () => {
