@@ -108,6 +108,16 @@ export const riverData = [
     currentFlowCFS: 90,
     usgsId: "2355269",
     alerts: []
+  },
+  {
+    id: 12,
+    state: "CO",
+    river: "Bear Creek",
+    watershed: "South Platte",
+    geoTag: "Golden",
+    currentFlowCFS: 45,
+    usgsId: "2355269",
+    alerts: []
   }
 ];
 
