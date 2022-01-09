@@ -4,6 +4,7 @@ import TopNavigation from "../topNavigation/TopNavigation";
 import "./style.css";
 import Dashboard from "../dashboard/Dashboard";
 import RiverProvider, { RiverContext } from "../../context/RiverContext";
+// import { AuthProvider } from "../../context/auth/AuthContext";
 
 const Main = () => {
   return (
