@@ -16,17 +16,17 @@ import {
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Authentication />}></Route>
-            <Route path="/dashboard" element={<Main />}></Route>
-            <Route path="/map" element={<Map />}></Route>
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    // <AuthProvider>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Authentication />}></Route>
+          <Route path="/dashboard" element={<Main />}></Route>
+          <Route path="/map" element={<Map />}></Route>
+        </Routes>
+      </div>
+    </Router>
+    // </AuthProvider>
   );
 }
 

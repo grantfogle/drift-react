@@ -11,7 +11,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Authentication = () => {
   const [loginTabValue, setLoginTabValue] = useState("login");
-  // const { authState, dispatch } = useContext(AuthContext);
+  //   const { authState, dispatch } = useContext(AuthContext);
 
   const handleTabChange = (event, newValue) => {
     setLoginTabValue(newValue);
