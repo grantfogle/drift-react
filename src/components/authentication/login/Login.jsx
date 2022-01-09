@@ -22,9 +22,9 @@ const Login = () => {
     setDisableSubmit(true);
     setLoadingLogin(true);
     // make
-    await fetch("http://localhost:8080/api/rivers").then(res =>
-      console.log(res)
-    );
+    // await fetch("http://localhost:8080/api/rivers").then(res =>
+    //   console.log(res)
+    // );
   };
 
   const displaySubmitText = () => {
