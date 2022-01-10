@@ -21,6 +21,7 @@ const Login = () => {
   const submitLogin = async e => {
     setDisableSubmit(true);
     setLoadingLogin(true);
+    // console.log(email, password);
     // make
     // await fetch("http://localhost:8080/api/rivers").then(res =>
     //   console.log(res)
@@ -47,6 +48,15 @@ const Login = () => {
           required
           id="outlined-required"
           label="Email"
+          onChange={(event, value) => {
+            console.log(event, value);
+            if (value === null) {
+              value = "";
+              setEmail("");
+            } else {
+              setEmail(value);
+            }
+          }}
         />
 
         <TextField
@@ -56,6 +66,15 @@ const Login = () => {
           label="Password"
           type="password"
           autoComplete="current-password"
+          onChange={(event, value) => {
+            console.log(event, value);
+            if (value === null) {
+              value = "";
+              setPassword("");
+            } else {
+              setPassword();
+            }
+          }}
         />
         <Button
           sx={{ m: 1 }}
