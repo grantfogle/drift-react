@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useAuth } from "../../../use-auth";
+
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -7,10 +9,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [disableSubmit, setDisableSubmit] = useState(false);
   const [loadingLogin, setLoadingLogin] = useState(false);
+  const auth = useAuth();
 
   /* TODO
         (+) Add social logins (google/facebook)
@@ -21,11 +24,7 @@ const Login = () => {
   const submitLogin = async e => {
     setDisableSubmit(true);
     setLoadingLogin(true);
-    // console.log(email, password);
-    // make
-    // await fetch("http://localhost:8080/api/rivers").then(res =>
-    //   console.log(res)
-    // );
+    auth.signin(loginEmail, loginPassword);
   };
 
   const displaySubmitText = () => {
@@ -44,18 +43,12 @@ const Login = () => {
     <>
       <FormControl sx={{ m: 2, width: 300 }} variant="outlined">
         <TextField
+          id="outlined-required"
           sx={{ m: 1 }}
           required
-          id="outlined-required"
           label="Email"
-          onChange={(event, value) => {
-            console.log(event, value);
-            if (value === null) {
-              value = "";
-              setEmail("");
-            } else {
-              setEmail(value);
-            }
+          onChange={event => {
+            setLoginEmail(event.target.value);
           }}
         />
 
@@ -65,15 +58,9 @@ const Login = () => {
           id="outlined-password-input"
           label="Password"
           type="password"
-          autoComplete="current-password"
-          onChange={(event, value) => {
-            console.log(event, value);
-            if (value === null) {
-              value = "";
-              setPassword("");
-            } else {
-              setPassword();
-            }
+          value={loginPassword}
+          onChange={event => {
+            setLoginPassword(event.target.value);
           }}
         />
         <Button
