@@ -8,11 +8,9 @@ import FormControl from "@mui/material/FormControl";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const [disableSubmit, setDisableSubmit] = useState(false);
-  const [loadingLogin, setLoadingLogin] = useState(false);
   const auth = useAuth();
 
   /* TODO
@@ -22,21 +20,20 @@ const Login = () => {
     */
 
   const submitLogin = async e => {
-    setDisableSubmit(true);
-    setLoadingLogin(true);
-    auth.signin(loginEmail, loginPassword);
+    handleLoginActions(true, true);
+    // auth.signin(loginEmail, loginPassword);
   };
 
   const displaySubmitText = () => {
-    return loadingLogin ? (
+    return showLoginLoading ? (
       <CircularProgress color="inherit" />
     ) : (
-      <Link style={{ textDecoration: "none" }} to="/dashboard">
-        <Typography sx={{ color: "#fff" }} variant="subtitle1">
-          Login
+        <Link style={{ textDecoration: "none" }} to="/dashboard">
+          <Typography sx={{ color: "#fff" }} variant="subtitle1">
+            Login
         </Typography>
-      </Link>
-    );
+        </Link>
+      );
   };
 
   return (
@@ -68,7 +65,7 @@ const Login = () => {
           size="medium"
           variant="contained"
           color="primary"
-          disabled={disableSubmit}
+          disabled={disableLoginSubmit}
           onClick={e => submitLogin(e)}
         >
           {displaySubmitText()}

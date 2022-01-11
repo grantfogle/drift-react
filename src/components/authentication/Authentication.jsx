@@ -11,6 +11,13 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Authentication = () => {
   const [loginTabValue, setLoginTabValue] = useState("login");
+  const [disableLoginSubmit, setDisableLoginSubmit] = useState(false);
+  const [showLoginLoading, setShowLoadingIcon] = useState(false);
+
+  const handleLoginActions = (loginStatus, loadingStatus) => {
+    setDisableLoginSubmit(loginStatus);
+    setShowLoadingIcon(loadingStatus);
+  }
   //   const { authState, dispatch } = useContext(AuthContext);
 
   const handleTabChange = (event, newValue) => {
@@ -18,7 +25,9 @@ const Authentication = () => {
   };
 
   const displayLoginForm = () => {
-    return loginTabValue === "login" ? <Login /> : <SignUp />;
+    return (loginTabValue === "login" ?
+      <Login handleLoginActions={handleLoginActions} disableLoginSubmit={disableLoginSubmit} showLoginLoading={showLoginLoading} /> :
+      <SignUp handleLoginActions={handleLoginActions} disableLoginSubmit={disableLoginSubmit} showLoginLoading={showLoginLoading} />);
   };
 
   return (

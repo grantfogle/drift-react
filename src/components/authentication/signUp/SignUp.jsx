@@ -7,21 +7,18 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 
-const SignUp = () => {
-  const [signupEmail, setsignupEmail] = useState("");
-  const [confirmSignupEmail, setConfirmSignupEmail] = useState("");
-  const [signupPassword, setsignupPassword] = useState("");
-  const [confirmSignupPassword, setConfirmSignupPassword] = useState("");
+const SignUp = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => {
+  const [signupEmail, setsignupEmail] = useState('');
+  const [signupPassword, setsignupPassword] = useState('');
   const [disableSubmit, setDisableSubmit] = useState(false);
   const [loadingLogin, setLoadingLogin] = useState(false);
   const auth = useAuth();
   // display alert
   // const alertMessage = () => {
 
-  submitUserSignup = () => {
-    // check if signup email and passwords match
-    // set disable submit and
-    // loading indicator
+  const submitUserSignup = () => {
+    handleLoginActions(true, true);
+    auth.signup(signupEmail, signupPassword);
   };
   // }
   /* TODO
@@ -40,22 +37,8 @@ const SignUp = () => {
         <TextField
           sx={{ m: 1 }}
           required
-          id="outlined-required"
-          label="Confirm Email"
-        />
-        <TextField
-          sx={{ m: 1 }}
-          required
           id="outlined-password-input"
           label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-        <TextField
-          sx={{ m: 1 }}
-          required
-          id="outlined-password-input"
-          label="Confirm Password"
           type="password"
           autoComplete="current-password"
         />
