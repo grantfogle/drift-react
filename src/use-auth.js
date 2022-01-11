@@ -18,9 +18,9 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  // Wrap any Firebase methods we want to use making sure ...
-  // ... to save the user to state.
+
   const signin = (email, password) => {
+    // redirectToDashboard()
     const loginBody = {
       email,
       password
@@ -40,29 +40,34 @@ function useProvideAuth() {
     }).then(response => {
       // setup store variables
       console.log(response);
-      // if (response.status === 200) {
-      //   context.history.push("/dashboard");
-      // }
-      // console.log(response);
-      // return firebase
-      //   .auth()
-      //   .signInWithEmailAndPassword(email, password)
-      //   .then((response) => {
-      //     setUser(response.user);
-      //     return response.user;
-      //   });
     });
   };
   const signup = (email, password) => {
-    // return firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((response) => {
-    //     setUser(response.user);
-    //     return response.user;
-    //   });
+    // redirectToDashboard()
+    const signupBody = {
+      email,
+      password
+    };
+    fetch(signupUrl, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json"
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(signupBody) // body data type must match "Content-Type" header
+    }).then(response => {
+      // setup store variables
+      console.log(response);
+    });
   };
   const signout = () => {
+    // redirectToLogin()
+    setUser(false);
     // return firebase
     //   .auth()
     //   .signOut()
