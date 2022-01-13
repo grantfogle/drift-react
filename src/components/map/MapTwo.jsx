@@ -74,7 +74,7 @@ const MapTwo = () => {
         <SearchBoxRightMenu />
       </Box>
       <MapContainer
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "800px", width: "100%" }}
         center={[39.3689, -107.0328]}
         zoom={13}
         scrollWheelZoom={false}
