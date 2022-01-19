@@ -21,12 +21,10 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
 
   const signin = (email, password) => {
-    // redirectToDashboard()
     const loginBody = {
       email,
       password
     };
-    console.log("LOGIN", email, password);
     fetch(loginUrl, {
       method: "POST",
       mode: "cors",
@@ -43,6 +41,7 @@ function useProvideAuth() {
         return response.json();
       })
       .then(data => {
+        // redirectToDashboard()
         console.log(data);
       });
   };
@@ -64,11 +63,15 @@ function useProvideAuth() {
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(signupBody) // body data type must match "Content-Type" header
-    }).then(response => {
-      // setup store variables
-      setUser(response);
-      console.log(response);
-    });
+    })
+      .then(response => {
+        // setup store variables
+        return response.json();
+      })
+      .then(data => {
+        // redirectToDashboard()
+        console.log(data);
+      });
   };
   const signout = () => {
     // redirectToLogin()

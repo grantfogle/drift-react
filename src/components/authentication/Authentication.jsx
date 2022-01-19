@@ -64,7 +64,13 @@ const Authentication = () => {
     }
   };
   const signUserUp = () => {
-    // auth.signup(signUpEmail, signUpPassword);
+    const isEmailValid = authEmail.includes("@") && authEmail.length >= 5;
+    const isPasswordValid = authPassword.length >= 4;
+    if (isEmailValid && isPasswordValid) {
+      auth.signup(authEmail, authPassword);
+    } else {
+      displayErrorMessage("Please enter a valid email/password");
+    }
   };
   // error messages, user already exists, email/password were incorrect, etc.
   //   const { authState, dispatch } = useContext(AuthContext);
