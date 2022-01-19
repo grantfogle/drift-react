@@ -55,14 +55,10 @@ const Authentication = () => {
   };
 
   const logUserIn = () => {
-    const isEmailValid =
-      authEmail.includes("@") &&
-      authEmail.includes(".com") &&
-      authEmail.length >= 5;
+    const isEmailValid = authEmail.includes("@") && authEmail.length >= 5;
     const isPasswordValid = authPassword.length >= 4;
-
     if (isEmailValid && isPasswordValid) {
-      auth.login(authEmail, authPassword);
+      auth.signin(authEmail, authPassword);
     } else {
       displayErrorMessage("Please enter a valid email/password");
     }

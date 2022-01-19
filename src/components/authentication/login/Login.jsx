@@ -32,11 +32,11 @@ const Login = ({
     return showLoginLoading ? (
       <CircularProgress color="inherit" />
     ) : (
-      <Link style={{ textDecoration: "none" }} to="/dashboard">
-        <Typography sx={{ color: "#fff" }} variant="subtitle1">
-          Login
-        </Typography>
-      </Link>
+      // <Link style={{ textDecoration: "none" }} to="/dashboard">
+      <Typography sx={{ color: "#fff" }} variant="subtitle1">
+        Login
+      </Typography>
+      // </Link>
     );
   };
 

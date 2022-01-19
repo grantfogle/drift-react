@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 const authContext = createContext();
 const loginUrl = "http://localhost:8080/api/login";
 const signupUrl =
-  "https://'cors-anywhere.herokuapp.com/localhost:8080/api/signup";
+  "https://cors-anywhere.herokuapp.com/localhost:8080/api/signup";
 // source: https://usehooks.com/useAuth/
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
@@ -26,22 +26,25 @@ function useProvideAuth() {
       email,
       password
     };
+    console.log("LOGIN", email, password);
     fetch(loginUrl, {
       method: "POST",
       mode: "cors",
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
+      credentials: "same-origin",
       headers: {
         "Content-Type": "application/json"
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: "follow", // manual, *follow, error
       referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
       body: JSON.stringify(loginBody) // body data type must match "Content-Type" header
-    }).then(response => {
-      // setup store variables
-      console.log(response);
-    });
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      });
   };
   const signup = (email, password) => {
     // redirectToDashboard()
@@ -63,6 +66,7 @@ function useProvideAuth() {
       body: JSON.stringify(signupBody) // body data type must match "Content-Type" header
     }).then(response => {
       // setup store variables
+      setUser(response);
       console.log(response);
     });
   };
