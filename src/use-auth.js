@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 
 const authContext = createContext();
 const loginUrl = "http://localhost:8080/api/login";
-const signupUrl = "http://localhost:8080/api/signup";
+const signupUrl =
+  "https://'cors-anywhere.herokuapp.com/localhost:8080/api/signup";
 // source: https://usehooks.com/useAuth/
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().

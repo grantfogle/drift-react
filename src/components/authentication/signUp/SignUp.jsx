@@ -7,18 +7,25 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
 
-const SignUp = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => {
-  const [signupEmail, setsignupEmail] = useState('');
-  const [signupPassword, setsignupPassword] = useState('');
-  const [disableSubmit, setDisableSubmit] = useState(false);
-  const [loadingLogin, setLoadingLogin] = useState(false);
+const SignUp = ({
+  handleLoginActions,
+  disableLoginSubmit,
+  showLoginLoading
+}) => {
+  //const [signupEmail, setsignupEmail] = useState("");
+  // const [signupPassword, setsignupPassword] = useState("");
+  // const [disableSubmit, setDisableSubmit] = useState(false);
+  // const [loadingLogin, setLoadingLogin] = useState(false);
   const auth = useAuth();
   // display alert
   // const alertMessage = () => {
+  // onChange={event => {
+  //   setLoginPassword(event.target.value);
+  // }}
 
   const submitUserSignup = () => {
     handleLoginActions(true, true);
-    auth.signup(signupEmail, signupPassword);
+    // auth.signup(signupEmail, signupPassword);
   };
   // }
   /* TODO
@@ -42,12 +49,18 @@ const SignUp = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) =>
           type="password"
           autoComplete="current-password"
         />
-        <Button sx={{ m: 1 }} size="medium" variant="contained" color="primary">
-          <Link style={{ textDecoration: "none" }} to="/dashboard">
-            <Typography sx={{ color: "#fff" }} variant="subtitle1">
-              Sign Up
-            </Typography>
-          </Link>
+        <Button
+          sx={{ m: 1 }}
+          size="medium"
+          variant="contained"
+          color="primary"
+          onClick={e => submitUserSignup(e)}
+        >
+          {/* <Link style={{ textDecoration: "none" }} to="/dashboard"> */}
+          <Typography sx={{ color: "#fff" }} variant="subtitle1">
+            Sign Up
+          </Typography>
+          {/* </Link> */}
         </Button>
       </FormControl>
     </>

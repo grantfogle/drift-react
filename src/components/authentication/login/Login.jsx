@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../use-auth";
-
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -8,10 +6,17 @@ import FormControl from "@mui/material/FormControl";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Link } from "react-router-dom";
 
-const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => {
-  const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const auth = useAuth();
+const Login = ({
+  handleLoginActions,
+  disableLoginSubmit,
+  showLoginLoading,
+  authEmail,
+  setAuthEmail,
+  authPassword,
+  setAuthPassword
+}) => {
+  // const [loginEmail, setLoginEmail] = useState("");
+  // const [loginPassword, setLoginPassword] = useState("");
 
   /* TODO
         (+) Add social logins (google/facebook)
@@ -19,21 +24,20 @@ const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => 
         (+) forgot password toggle?
     */
 
-  const submitLogin = async e => {
-    handleLoginActions(true, true);
-    // auth.signin(loginEmail, loginPassword);
-  };
+  // const submitLogin = async e => {
+  //   handleLoginActions(true, true);
+  // };
 
   const displaySubmitText = () => {
     return showLoginLoading ? (
       <CircularProgress color="inherit" />
     ) : (
-        <Link style={{ textDecoration: "none" }} to="/dashboard">
-          <Typography sx={{ color: "#fff" }} variant="subtitle1">
-            Login
+      <Link style={{ textDecoration: "none" }} to="/dashboard">
+        <Typography sx={{ color: "#fff" }} variant="subtitle1">
+          Login
         </Typography>
-        </Link>
-      );
+      </Link>
+    );
   };
 
   return (
@@ -45,7 +49,7 @@ const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => 
           required
           label="Email"
           onChange={event => {
-            setLoginEmail(event.target.value);
+            setAuthEmail(event.target.value);
           }}
         />
 
@@ -55,9 +59,8 @@ const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => 
           id="outlined-password-input"
           label="Password"
           type="password"
-          value={loginPassword}
           onChange={event => {
-            setLoginPassword(event.target.value);
+            setAuthPassword(event.target.value);
           }}
         />
         <Button
@@ -66,7 +69,7 @@ const Login = ({ handleLoginActions, disableLoginSubmit, showLoginLoading }) => 
           variant="contained"
           color="primary"
           disabled={disableLoginSubmit}
-          onClick={e => submitLogin(e)}
+          onClick={e => handleLoginActions()}
         >
           {displaySubmitText()}
         </Button>

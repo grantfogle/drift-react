@@ -1,23 +1,76 @@
 import React, { useState, useContext } from "react";
-import Login from "./login/Login";
-import SignUp from "./signUp/SignUp";
-
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import Typgraphy from "@mui/material/Typography";
+import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { AuthContext } from "../../context/AuthContext";
+
+import Login from "./login/Login";
+import SignUp from "./signUp/SignUp";
+import { useAuth } from "../../use-auth";
 
 const Authentication = () => {
+  const [authEmail, setAuthEmail] = useState("");
+  const [authPassword, setAuthPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showErrorMsg, setShowErrorMsg] = useState(false);
   const [loginTabValue, setLoginTabValue] = useState("login");
   const [disableLoginSubmit, setDisableLoginSubmit] = useState(false);
   const [showLoginLoading, setShowLoadingIcon] = useState(false);
+  const auth = useAuth();
 
-  const handleLoginActions = (loginStatus, loadingStatus) => {
-    setDisableLoginSubmit(loginStatus);
-    setShowLoadingIcon(loadingStatus);
-  }
+  const handleLoginActions = () => {
+    setDisableLoginSubmit(true);
+    setShowLoadingIcon(true);
+    console.log(authEmail, authPassword);
+    if (loginTabValue === "login") {
+      logUserIn();
+    } else {
+      signUserUp();
+    }
+  };
+
+  const displayErrorMessage = message => {
+    setErrorMessage(message);
+    setShowErrorMsg(true);
+    setDisableLoginSubmit(false);
+    setShowLoadingIcon(false);
+    setTimeout(() => {
+      setShowErrorMsg(false);
+      setErrorMessage("");
+    }, 5000);
+  };
+
+  // have a place where you keep common components like error messages
+  const errorMessageComponent = () => {
+    return showErrorMsg ? (
+      <Box>
+        <Typography variant="subtitle1" color="error">
+          {errorMessage}
+        </Typography>
+      </Box>
+    ) : (
+      ""
+    );
+  };
+
+  const logUserIn = () => {
+    const isEmailValid =
+      authEmail.includes("@") &&
+      authEmail.includes(".com") &&
+      authEmail.length >= 5;
+    const isPasswordValid = authPassword.length >= 4;
+
+    if (isEmailValid && isPasswordValid) {
+      auth.login(authEmail, authPassword);
+    } else {
+      displayErrorMessage("Please enter a valid email/password");
+    }
+  };
+  const signUserUp = () => {
+    // auth.signup(signUpEmail, signUpPassword);
+  };
+  // error messages, user already exists, email/password were incorrect, etc.
   //   const { authState, dispatch } = useContext(AuthContext);
 
   const handleTabChange = (event, newValue) => {
@@ -25,9 +78,23 @@ const Authentication = () => {
   };
 
   const displayLoginForm = () => {
-    return (loginTabValue === "login" ?
-      <Login handleLoginActions={handleLoginActions} disableLoginSubmit={disableLoginSubmit} showLoginLoading={showLoginLoading} /> :
-      <SignUp handleLoginActions={handleLoginActions} disableLoginSubmit={disableLoginSubmit} showLoginLoading={showLoginLoading} />);
+    return loginTabValue === "login" ? (
+      <Login
+        handleLoginActions={handleLoginActions}
+        disableLoginSubmit={disableLoginSubmit}
+        showLoginLoading={showLoginLoading}
+        authEmail={authEmail}
+        setAuthEmail={setAuthEmail}
+        authPassword={authPassword}
+        setAuthPassword={setAuthPassword}
+      />
+    ) : (
+      <SignUp
+        handleLoginActions={handleLoginActions}
+        disableLoginSubmit={disableLoginSubmit}
+        showLoginLoading={showLoginLoading}
+      />
+    );
   };
 
   return (
@@ -46,7 +113,7 @@ const Authentication = () => {
           sx={{
             backgroundColor: "#fff",
             borderRadius: 10,
-            height: 600,
+            height: 400,
             padding: 5
           }}
           maxWidth="sm"
@@ -60,7 +127,8 @@ const Authentication = () => {
               alignItems: "center"
             }}
           >
-            <Typgraphy variant="h4">Log in to Your Drift Account</Typgraphy>
+            <Typography variant="h4">Log in to Your Drift Account</Typography>
+            {errorMessageComponent()}
             <Tabs
               value={loginTabValue}
               onChange={handleTabChange}
