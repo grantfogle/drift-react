@@ -18,6 +18,9 @@ export const useAuth = () => {
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   const signin = (email, password) => {
     const loginBody = {
@@ -44,7 +47,6 @@ function useProvideAuth() {
       });
   };
   const signup = (email, password) => {
-    // redirectToDashboard()
     const signupBody = {
       email,
       password
@@ -63,11 +65,9 @@ function useProvideAuth() {
       body: JSON.stringify(signupBody) // body data type must match "Content-Type" header
     })
       .then(response => {
-        // setup store variables
         return response.json();
       })
       .then(data => {
-        // redirectToDashboard()
         setUser(data);
       });
   };
