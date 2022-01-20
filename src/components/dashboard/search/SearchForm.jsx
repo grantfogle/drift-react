@@ -56,7 +56,7 @@ const SearchForm = () => {
                                 return;
                             }
                         }}
-                        sx={{ width: 450 }}
+                        sx={{ width: 300 }}
                         renderInput={params => <TextField {...params} label="River" />}
                     />
                     <Autocomplete
