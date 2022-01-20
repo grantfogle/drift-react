@@ -2,10 +2,15 @@ import * as React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+
+import { useAuth } from "../../../use-auth";
 
 const SettingsSubNav = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const auth = useAuth();
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -22,7 +27,9 @@ const SettingsSubNav = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        Settings
+        <Typography variant='subtitle1' style={{ color: '#fff' }}>
+          Settings
+        </Typography>
       </Button>
       <Menu
         id="basic-menu"
@@ -35,7 +42,10 @@ const SettingsSubNav = () => {
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={() => {
+          handleClose();
+          auth.signout();
+        }}>Logout</MenuItem>
       </Menu>
     </div>
   );

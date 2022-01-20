@@ -17,7 +17,7 @@ export const useAuth = () => {
 };
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
   useEffect(() => {
     console.log(user);
   }, [user]);
