@@ -1,31 +1,25 @@
 import React, { useState } from "react";
-import { useAuth } from "../../../use-auth";
-import { Link } from "react-router-dom";
-
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const SignUp = ({
   handleLoginActions,
   disableLoginSubmit,
-  showLoginLoading
+  showLoginLoading,
+  setAuthEmail,
+  setAuthPassword
 }) => {
-  //const [signupEmail, setsignupEmail] = useState("");
-  // const [signupPassword, setsignupPassword] = useState("");
-  // const [disableSubmit, setDisableSubmit] = useState(false);
-  // const [loadingLogin, setLoadingLogin] = useState(false);
-  const auth = useAuth();
-  // display alert
-  // const alertMessage = () => {
-  // onChange={event => {
-  //   setLoginPassword(event.target.value);
-  // }}
-
-  const submitUserSignup = () => {
-    handleLoginActions(true, true);
-    // auth.signup(signupEmail, signupPassword);
+  const displaySubmitText = () => {
+    return showLoginLoading ? (
+      <CircularProgress color="inherit" />
+    ) : (
+      <Typography sx={{ color: "#fff" }} variant="subtitle1">
+        Sign Up
+      </Typography>
+    );
   };
   // }
   /* TODO
@@ -40,6 +34,9 @@ const SignUp = ({
           required
           id="outlined-required"
           label="Email"
+          onChange={event => {
+            setAuthEmail(event.target.value);
+          }}
         />
         <TextField
           sx={{ m: 1 }}
@@ -48,19 +45,19 @@ const SignUp = ({
           label="Password"
           type="password"
           autoComplete="current-password"
+          onChange={event => {
+            setAuthPassword(event.target.value);
+          }}
         />
         <Button
           sx={{ m: 1 }}
           size="medium"
           variant="contained"
           color="primary"
-          onClick={e => submitUserSignup(e)}
+          disabled={disableLoginSubmit}
+          onClick={e => handleLoginActions()}
         >
-          {/* <Link style={{ textDecoration: "none" }} to="/dashboard"> */}
-          <Typography sx={{ color: "#fff" }} variant="subtitle1">
-            Sign Up
-          </Typography>
-          {/* </Link> */}
+          {displaySubmitText()}
         </Button>
       </FormControl>
     </>

@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 
 const authContext = createContext();
 const loginUrl = "http://localhost:8080/api/login";
-const signupUrl =
-  "https://cors-anywhere.herokuapp.com/localhost:8080/api/signup";
+const signupUrl = "http://localhost:8080/api/signup";
 // source: https://usehooks.com/useAuth/
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
@@ -41,8 +40,7 @@ function useProvideAuth() {
         return response.json();
       })
       .then(data => {
-        // redirectToDashboard()
-        console.log(data);
+        setUser(data);
       });
   };
   const signup = (email, password) => {
@@ -70,18 +68,11 @@ function useProvideAuth() {
       })
       .then(data => {
         // redirectToDashboard()
-        console.log(data);
+        setUser(data);
       });
   };
   const signout = () => {
-    // redirectToLogin()
     setUser(false);
-    // return firebase
-    //   .auth()
-    //   .signOut()
-    //   .then(() => {
-    //     setUser(false);
-    //   });
   };
   //   const sendPasswordResetEmail = (email) => {
   //     return firebase

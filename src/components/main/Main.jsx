@@ -5,10 +5,12 @@ import "./style.css";
 import Dashboard from "../dashboard/Dashboard";
 import RiverProvider, { RiverContext } from "../../context/RiverContext";
 // import { AuthProvider } from "../../context/auth/AuthContext";
+import { useAuth } from "../../use-auth";
 
 const Main = () => {
   return (
     <RiverProvider>
+      {}
       <TopNavigation />
       <div className="main">
         <Dashboard />

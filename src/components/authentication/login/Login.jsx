@@ -4,7 +4,6 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import FormControl from "@mui/material/FormControl";
 import CircularProgress from "@mui/material/CircularProgress";
-import { Link } from "react-router-dom";
 
 const Login = ({
   handleLoginActions,
@@ -15,28 +14,19 @@ const Login = ({
   authPassword,
   setAuthPassword
 }) => {
-  // const [loginEmail, setLoginEmail] = useState("");
-  // const [loginPassword, setLoginPassword] = useState("");
-
   /* TODO
         (+) Add social logins (google/facebook)
         (+) remember me?
         (+) forgot password toggle?
     */
 
-  // const submitLogin = async e => {
-  //   handleLoginActions(true, true);
-  // };
-
   const displaySubmitText = () => {
     return showLoginLoading ? (
       <CircularProgress color="inherit" />
     ) : (
-      // <Link style={{ textDecoration: "none" }} to="/dashboard">
       <Typography sx={{ color: "#fff" }} variant="subtitle1">
         Login
       </Typography>
-      // </Link>
     );
   };
 

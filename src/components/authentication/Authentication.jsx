@@ -22,7 +22,6 @@ const Authentication = () => {
   const handleLoginActions = () => {
     setDisableLoginSubmit(true);
     setShowLoadingIcon(true);
-    console.log(authEmail, authPassword);
     if (loginTabValue === "login") {
       logUserIn();
     } else {
@@ -73,7 +72,6 @@ const Authentication = () => {
     }
   };
   // error messages, user already exists, email/password were incorrect, etc.
-  //   const { authState, dispatch } = useContext(AuthContext);
 
   const handleTabChange = (event, newValue) => {
     setLoginTabValue(newValue);
@@ -95,6 +93,8 @@ const Authentication = () => {
         handleLoginActions={handleLoginActions}
         disableLoginSubmit={disableLoginSubmit}
         showLoginLoading={showLoginLoading}
+        setAuthEmail={setAuthEmail}
+        setAuthPassword={setAuthPassword}
       />
     );
   };
