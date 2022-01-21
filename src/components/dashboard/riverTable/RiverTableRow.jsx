@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { RiverContext } from '../../../context/RiverContext';
 import RiverAlert from './riverAlert/RiverAlert';
+import RiverGraph from './riverGraph/RiverGraph';
 
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -33,9 +34,15 @@ const RiverTableRow = (riverData) => {
     const displayDropdown = () => {
         if (showDropdown) {
             return (
-                <TableRow>
-                    <Box>stuff will go here</Box>
-                </TableRow>
+                <TableRow sx={{ width: '100%', height: '200px' }}>
+                    {/* <Box sx={{ height: '100%', width: '100%' }}> */}
+                    <TableCell colSpan={5}>
+                        <Box>
+                            <RiverGraph />
+                        </Box>
+                    </TableCell>
+                    {/* </Box> */}
+                </TableRow >
             )
         }
     }
