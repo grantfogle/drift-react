@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import { RiverContext } from "../../../context/RiverContext";
 import { SliderValueLabel } from "@mui/material";
 import { riversFilterList, watershedFilterList } from './data/filters'
+import './SearchForm.css';
 
 const SearchForm = () => {
     const [riverValue, setRiverValue] = useState('');
