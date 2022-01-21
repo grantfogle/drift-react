@@ -13,7 +13,7 @@ const RiverTableView = () => {
   const { riverState } = useContext(RiverContext);
   return (
     <>
-      <TableContainer component={Paper} sx={{ width: "90%", margin: "auto" }}>
+      <TableContainer component={Paper} sx={{ maxWidth: "1200px", margin: "auto" }}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>

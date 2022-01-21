@@ -1,11 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { RiverContext } from '../../context/RiverContext';
-import Search from './search/Search';
 
 import SearchForm from './search/SearchForm';
-import RiverTable from './riverTable/RiverTable';
 import RiverTableView from './riverTable/RiverTableView';
-// import RiverProvider from '../context/RiverContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -27,7 +24,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <SearchForm />
+      <Box>
+        <SearchForm />
+      </Box>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         <Tabs
           value={value}

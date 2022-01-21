@@ -5,6 +5,7 @@ import RiverAlert from './riverAlert/RiverAlert';
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 
 import StarIcon from '@mui/icons-material/Star';
@@ -33,7 +34,7 @@ const RiverTableRow = (riverData) => {
         if (showDropdown) {
             return (
                 <TableRow>
-                    <TableCell>stuff will go here</TableCell>
+                    <Box>stuff will go here</Box>
                 </TableRow>
             )
         }

@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
-
 import TextField from "@mui/material/TextField";
 import { RiverContext } from "../../../context/RiverContext";
 import { SliderValueLabel } from "@mui/material";
+import { riversFilterList, watershedFilterList } from './data/filters'
+import './SearchForm.css';
 
 const SearchForm = () => {
     const [riverValue, setRiverValue] = useState('');
@@ -43,7 +44,7 @@ const SearchForm = () => {
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={rivers}
+                        options={riversFilterList}
                         value={riverValue}
                         onChange={(event, value) => {
                             if (value === null) {
@@ -56,13 +57,13 @@ const SearchForm = () => {
                                 return;
                             }
                         }}
-                        sx={{ width: 450 }}
+                        sx={{ width: 300 }}
                         renderInput={params => <TextField {...params} label="River" />}
                     />
                     <Autocomplete
                         disablePortal
                         id="combo-box-demo"
-                        options={states}
+                        options={watershedFilterList}
                         value={watershedValue}
                         onChange={(event, value) => {
                             if (value === null) {
