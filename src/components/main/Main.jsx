@@ -11,6 +11,9 @@ import Authentication from "../authentication/Authentication";
 const Main = () => {
   const auth = useAuth();
 
+  useEffect(() => {
+    console.log("cats");
+  }, []);
   // how to re render object on value change
 
   const displayMainComponent = () => {
