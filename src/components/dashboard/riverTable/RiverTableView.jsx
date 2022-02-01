@@ -7,13 +7,16 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import RiverTableRow from './RiverTableRow';
+import RiverTableRow from "./RiverTableRow";
 
 const RiverTableView = () => {
   const { riverState } = useContext(RiverContext);
   return (
     <>
-      <TableContainer component={Paper} sx={{ maxWidth: "1200px", margin: "auto" }}>
+      <TableContainer
+        component={Paper}
+        sx={{ maxWidth: "1200px", margin: "auto" }}
+      >
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -26,7 +29,7 @@ const RiverTableView = () => {
           </TableHead>
           <TableBody>
             {riverState.displayRivers.map(riverData => {
-              return <RiverTableRow key={riverData.id} {...riverData} />;
+              return <RiverTableRow key={riverData.usgsId} {...riverData} />;
             })}
           </TableBody>
         </Table>

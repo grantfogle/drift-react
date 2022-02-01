@@ -7,7 +7,7 @@ export const RiverContext = createContext();
 const riverDashboardState = {
   rivers: riverData,
   watershed: watershedData,
-  displayRivers: riverData,
+  displayRivers: [],
   showRiverTable: false,
   searchByRiver: "",
   searchByWatershed: "",
