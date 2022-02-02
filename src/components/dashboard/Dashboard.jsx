@@ -9,6 +9,7 @@ import Box from "@mui/material/Box";
 
 const Dashboard = () => {
   const [value, setValue] = useState("explore");
+  const [isLoadingRivers, setIsLoadingRivers] = useState(false);
   // rivers in iceland, british columbia, usa, new zealand, europe, etc.
   const { riverState, dispatch } = useContext(RiverContext);
   // const = useContext()
@@ -20,7 +21,7 @@ const Dashboard = () => {
 
   const getTopRivers = () => {
     const topRiversUrl = "http://localhost:8080/api/top-rivers";
-
+    setIsLoadingRivers(true);
     fetch(topRiversUrl)
       .then(response => {
         return response.json();
@@ -28,6 +29,7 @@ const Dashboard = () => {
       .then(rivers => {
         if (rivers.length > 0) {
           dispatch({ type: "GET_TOP_RIVERS", topRivers: rivers });
+          setIsLoadingRivers(false);
         }
         return rivers;
       });
@@ -57,7 +59,7 @@ const Dashboard = () => {
           <Tab value="favorites" label="Favorites" />
         </Tabs>
       </Box>
-      <RiverTableView />
+      <RiverTableView isLoadingRivers={isLoadingRivers} />
     </>
   );
 };

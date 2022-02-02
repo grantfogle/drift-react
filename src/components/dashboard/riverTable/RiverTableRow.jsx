@@ -109,7 +109,7 @@ const RiverTableRow = riverData => {
         <TableCell>{displayFavoriteStatus()}</TableCell>
         <TableCell>
           {/*on click send to map*/}
-          {name} ({geoTag})
+          {name} {geoTag}
         </TableCell>
         <TableCell>{currentCFS}</TableCell>
         {/*show alerts on river status in pretty format, high h20, etc*/}

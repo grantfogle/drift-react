@@ -66,5 +66,4 @@ export const riverStateReducer = (state, action) => {
   if (action.type === "GET_TOP_RIVERS") {
     return { ...state, displayRivers: action.topRivers };
   }
-  // return state;
 };
