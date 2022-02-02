@@ -27,14 +27,9 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "SHOW_FAVORITES") {
-    const displayFavoritesArr = state.rivers.filter(river => {
-      if (state.userFavorites.includes(river.id)) {
-        return river;
-      }
-    });
     return {
       ...state,
-      displayRivers: displayFavoritesArr
+      displayRivers: action.payload.favorites
     };
   }
 

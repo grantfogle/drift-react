@@ -11,7 +11,7 @@ const riverDashboardState = {
   showRiverTable: false,
   searchByRiver: "",
   searchByWatershed: "",
-  userFavorites: userFavorited
+  userFavorites: []
 };
 
 const RiverProvider = ({ children }) => {

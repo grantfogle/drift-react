@@ -38,7 +38,21 @@ const Dashboard = () => {
   const handleTabChange = (event, newValue) => {
     setValue(newValue);
     if (newValue === "favorites") {
-      dispatch({ type: "SHOW_FAVORITES" });
+      if (riverState.userFavorites.length === 0) {
+        const userFavoritesUrl = "http://localhost:8080/api/users-favorites/1";
+        setIsLoadingRivers(true);
+        fetch(userFavoritesUrl)
+          .then(response => {
+            response.json();
+          })
+          .then(userFavorites => {
+            console.log(userFavorites);
+            if (userFavorites.length > 0) {
+              dispatch({ type: "SHOW_FAVORITES", favorites: userFavorites });
+              setIsLoadingRivers(false);
+            }
+          });
+      }
     } else {
       dispatch({ type: "SHOW_EXPLORE" });
     }
