@@ -11,17 +11,19 @@ import Box from "@mui/material/Box";
 const Dashboard = () => {
   const [value, setValue] = useState("explore");
   const [isLoadingRivers, setIsLoadingRivers] = useState(false);
-  // rivers in iceland, british columbia, usa, new zealand, europe, etc.
   const { riverState, dispatch } = useContext(RiverContext);
-  // const = useContext()
 
   useEffect(() => {
     getTopRivers();
   }, []);
 
-  const searchByRiver = (riverName, watershedName) => {};
-
-  const searchByWatershed = (riverName, watershedName) => {};
+  const searchRivers = async (riverName, watershedName) => {
+    await RiversService.searchForRivers(riverName, watershedName).then(res => {
+      console.log(res);
+      setIsLoadingRivers(false);
+      dispatch({ type: "GET_TOP_RIVERS", topRivers: res });
+    });
+  };
 
   const getTopRivers = async () => {
     setIsLoadingRivers(true);
@@ -30,17 +32,6 @@ const Dashboard = () => {
       setIsLoadingRivers(false);
       dispatch({ type: "GET_TOP_RIVERS", topRivers: res });
     });
-    // fetch(topRiversUrl)
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(rivers => {
-    //     if (rivers.length > 0) {
-    //       dispatch({ type: "GET_TOP_RIVERS", topRivers: rivers });
-    //       setIsLoadingRivers(false);
-    //     }
-    //     return rivers;
-    //   });
   };
 
   const handleTabChange = (event, newValue) => {
