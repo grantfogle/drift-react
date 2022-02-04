@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { RiverContext } from "../../context/RiverContext";
+import RiversService from "../../services/rivers.service";
 
 import SearchForm from "./search/SearchForm";
 import RiverTableView from "./riverTable/RiverTableView";
@@ -16,23 +17,30 @@ const Dashboard = () => {
 
   useEffect(() => {
     getTopRivers();
-    console.log("cats 2");
   }, []);
 
-  const getTopRivers = () => {
-    const topRiversUrl = "http://localhost:8080/api/top-rivers";
+  const searchByRiver = (riverName, watershedName) => {};
+
+  const searchByWatershed = (riverName, watershedName) => {};
+
+  const getTopRivers = async () => {
     setIsLoadingRivers(true);
-    fetch(topRiversUrl)
-      .then(response => {
-        return response.json();
-      })
-      .then(rivers => {
-        if (rivers.length > 0) {
-          dispatch({ type: "GET_TOP_RIVERS", topRivers: rivers });
-          setIsLoadingRivers(false);
-        }
-        return rivers;
-      });
+    await RiversService.getTopRivers().then(res => {
+      console.log(res);
+      setIsLoadingRivers(false);
+      dispatch({ type: "GET_TOP_RIVERS", topRivers: res });
+    });
+    // fetch(topRiversUrl)
+    //   .then(response => {
+    //     return response.json();
+    //   })
+    //   .then(rivers => {
+    //     if (rivers.length > 0) {
+    //       dispatch({ type: "GET_TOP_RIVERS", topRivers: rivers });
+    //       setIsLoadingRivers(false);
+    //     }
+    //     return rivers;
+    //   });
   };
 
   const handleTabChange = (event, newValue) => {

@@ -22,12 +22,6 @@ const RiverTableView = ({ isLoadingRivers }) => {
           <Skeleton sx={{ width: "90%", margin: "0 auto", height: 100 }} />
           <Skeleton sx={{ width: "90%", margin: "0 auto", height: 100 }} />
         </Box>
-        // <Skeleton
-        //   sx={{ bgcolor: "grey.900" }}
-        //   variant="rectangular"
-        //   width={210}
-        //   height={118}
-        // />
       );
     }
   };
