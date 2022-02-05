@@ -10,13 +10,12 @@ const RiversService = {
         return rivers;
       });
   },
-  searchForRivers: (riverName, watershedName) => {
+  searchRivers: riverName => {
     const searchRiversURL = "http://localhost:8080/api/rivers";
     const searchBody = {
-      riverName,
-      watershedName
+      riverName
     };
-    fetch(searchRiversURL, {
+    return fetch(searchRiversURL, {
       method: "POST",
       mode: "cors",
       cache: "no-cache",
@@ -26,7 +25,29 @@ const RiversService = {
       },
       redirect: "follow",
       referrerPolicy: "no-referrer",
-      body: searchBody
+      body: JSON.stringify(searchBody)
+    }).then(response => {
+      return response.json();
+    });
+  },
+  searchWatershed: watershedName => {
+    const searchRiversURL = "http://localhost:8080/api/watershed";
+    const searchBody = {
+      watershedName
+    };
+    return fetch(searchRiversURL, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(searchBody)
+    }).then(response => {
+      return response.json();
     });
   }
 };

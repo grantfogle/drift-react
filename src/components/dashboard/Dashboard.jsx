@@ -17,20 +17,11 @@ const Dashboard = () => {
     getTopRivers();
   }, []);
 
-  const searchRivers = async (riverName, watershedName) => {
-    await RiversService.searchForRivers(riverName, watershedName).then(res => {
-      console.log(res);
-      setIsLoadingRivers(false);
-      dispatch({ type: "GET_TOP_RIVERS", topRivers: res });
-    });
-  };
-
   const getTopRivers = async () => {
     setIsLoadingRivers(true);
     await RiversService.getTopRivers().then(res => {
-      console.log(res);
       setIsLoadingRivers(false);
-      dispatch({ type: "GET_TOP_RIVERS", topRivers: res });
+      dispatch({ type: "GET_RIVERS", rivers: res });
     });
   };
 

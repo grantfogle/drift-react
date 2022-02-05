@@ -58,7 +58,7 @@ export const riverStateReducer = (state, action) => {
       }
     });
   }
-  if (action.type === "GET_TOP_RIVERS") {
-    return { ...state, displayRivers: action.topRivers };
+  if (action.type === "GET_RIVERS") {
+    return { ...state, displayRivers: action.rivers };
   }
 };

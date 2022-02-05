@@ -2,15 +2,17 @@ import React, { useState, useContext } from "react";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { RiverContext } from "../../../context/RiverContext";
 import { SliderValueLabel } from "@mui/material";
 import { riversFilterList, watershedFilterList } from "./data/filters";
 import "./SearchForm.css";
+import RiversService from "../../../services/rivers.service";
+import { RiverContext } from "../../../context/RiverContext";
 
-const SearchForm = () => {
+const SearchForm = ({ searchRivers }) => {
   const [riverValue, setRiverValue] = useState("");
   const [watershedValue, setWatershedValue] = useState("");
-  const rivContext = useContext(RiverContext);
+  const { riverState, dispatch } = useContext(RiverContext);
+
   const filterOptions = createFilterOptions({
     matchFrom: "start",
     stringify: option => option.label
@@ -22,20 +24,25 @@ const SearchForm = () => {
     e.preventDefault();
   };
 
-  const FetchRiversAction = () => {
-    console.log("fetchRiversAction");
-    // make call to db via axios
-    // add promise hooks
-    // handle fail state
-    // dispatch to state
+  const sendRiverSearch = async riverStr => {
+    let riverStrLC = riverStr.toLowerCase();
+    if (watershedValue) {
+      console.log("filter current selected watershed");
+    } else {
+      await RiversService.searchRivers(riverStrLC).then(res => {
+        console.log(res);
+        dispatch({ type: "GET_RIVERS", rivers: res });
+      });
+    }
   };
 
-  const FetchWatershedAction = () => {
-    console.log("fetchWatershedAction");
-    // make call to db via axios
-    // add promise hooks
-    // handle fail state
-    // dispatch to state
+  const sendWatershedSearch = async watershedStr => {
+    setRiverValue("");
+    const watershedStrLC = watershedStr.toLowerCase();
+    await RiversService.searchWatershed(watershedStrLC).then(res => {
+      console.log(res);
+      dispatch({ type: "GET_RIVERS", rivers: res });
+    });
   };
 
   return (
@@ -51,18 +58,18 @@ const SearchForm = () => {
               if (value === null) {
                 value = "";
                 setRiverValue("");
-                rivContext.dispatch({
-                  type: "RIVERS_RESET",
-                  payload: { watershedFilter: watershedValue }
-                });
+                // rivContext.dispatch({
+                //   type: "RIVERS_RESET",
+                //   payload: { watershedFilter: watershedValue }
+                // });
               }
               if (value.label) {
-                rivContext.dispatch({
-                  type: "RIVER_SELECT",
-                  payload: { riverName: value.label }
-                });
+                // rivContext.dispatch({
+                //   type: "RIVER_SELECT",
+                //   payload: { riverName: value.label }
+                // });
                 setRiverValue(value.label);
-                return;
+                sendRiverSearch(value.label);
               }
             }}
             sx={{ width: 300 }}
@@ -79,12 +86,12 @@ const SearchForm = () => {
                 setRiverValue("");
               }
               if (value.label) {
-                rivContext.dispatch({
-                  type: "WATERSHED_SELECT",
-                  payload: { watershed: value.label }
-                });
+                // rivContext.dispatch({
+                //   type: "WATERSHED_SELECT",
+                //   payload: { watershed: value.label }
+                // });
                 setWatershedValue(value.label);
-                return;
+                sendWatershedSearch(value.label);
               }
             }}
             sx={{ width: 300 }}
