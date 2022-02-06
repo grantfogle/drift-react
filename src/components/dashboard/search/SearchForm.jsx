@@ -27,7 +27,10 @@ const SearchForm = ({ searchRivers }) => {
   const sendRiverSearch = async riverStr => {
     let riverStrLC = riverStr.toLowerCase();
     if (watershedValue) {
-      console.log("filter current selected watershed");
+      let filteredWatershedArr = riverState.displayRivers.filter(river => {
+        return river.name === riverStrLC;
+      });
+      dispatch({ type: "GET_RIVERS", rivers: filteredWatershedArr });
     } else {
       await RiversService.searchRivers(riverStrLC).then(res => {
         console.log(res);
