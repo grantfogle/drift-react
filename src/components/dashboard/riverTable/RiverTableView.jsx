@@ -6,6 +6,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Skeleton from "@mui/material/Skeleton";
 import Box from "@mui/material/Box";
@@ -21,6 +22,19 @@ const RiverTableView = ({ isLoadingRivers }) => {
           <Skeleton sx={{ width: "90%", margin: "0 auto", height: 100 }} />
           <Skeleton sx={{ width: "90%", margin: "0 auto", height: 100 }} />
           <Skeleton sx={{ width: "90%", margin: "0 auto", height: 100 }} />
+        </Box>
+      );
+    }
+  };
+
+  const noRiversToDisplay = () => {
+    if (!isLoadingRivers) {
+      return (
+        <Box>
+          <Typography variant="h4">
+            There doesn't appear to be anything here
+          </Typography>
+          <Typography variant="body1">Please try another search</Typography>
         </Box>
       );
     }
@@ -51,6 +65,8 @@ const RiverTableView = ({ isLoadingRivers }) => {
           </Table>
         </TableContainer>
       );
+    } else {
+      return noRiversToDisplay();
     }
   };
 
