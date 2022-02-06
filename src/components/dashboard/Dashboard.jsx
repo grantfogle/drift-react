@@ -1,20 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
-import { RiverContext } from "../../context/RiverContext";
-import RiversService from "../../services/rivers.service";
-
-import SearchForm from "./search/SearchForm";
-import RiverTableView from "./riverTable/RiverTableView";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { RiverContext } from "../../context/RiverContext";
+import RiversService from "../../services/rivers.service";
+import FavoritesService from "../../services/favorites.service";
+import SearchForm from "./search/SearchForm";
+import RiverTableView from "./riverTable/RiverTableView";
 
-const Dashboard = () => {
+const Dashboard = ({ userId }) => {
   const [value, setValue] = useState("explore");
   const [isLoadingRivers, setIsLoadingRivers] = useState(false);
   const { riverState, dispatch } = useContext(RiverContext);
 
   useEffect(() => {
     getTopRivers();
+    getUserFavorites();
   }, []);
 
   const getTopRivers = async () => {
@@ -22,6 +23,13 @@ const Dashboard = () => {
     await RiversService.getTopRivers().then(res => {
       setIsLoadingRivers(false);
       dispatch({ type: "GET_RIVERS", rivers: res });
+    });
+  };
+
+  const getUserFavorites = async () => {
+    await FavoritesService.getUserFavorites(userId).then(res => {
+      console.log(res);
+      dispatch({ type: "SHOW_FAVORITES", favorites: res });
     });
   };
 
