@@ -8,6 +8,7 @@ export const riverStateReducer = (state, action) => {
       displayRivers: filteredDisplayedRiver
     };
   }
+
   if (action.type === "ADD_TO_FAVORITES") {
     return {
       ...state,
@@ -26,14 +27,9 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "SHOW_FAVORITES") {
-    const displayFavoritesArr = state.rivers.filter(river => {
-      if (state.userFavorites.includes(river.id)) {
-        return river;
-      }
-    });
     return {
       ...state,
-      displayRivers: displayFavoritesArr
+      displayRivers: action.payload.favorites
     };
   }
 
@@ -53,5 +49,16 @@ export const riverStateReducer = (state, action) => {
       displayRivers: filterDisplayRiversByWatershed
     };
   }
-  return state;
+
+  if (action.type === "RIVERS_RESET") {
+    const activeWatershedFilter = action.payload.watershedFilter;
+    const resetFiltersCheck = state.rivers.filter(river => {
+      if (activeWatershedFilter && activeWatershedFilter === river.watershed) {
+        return river;
+      }
+    });
+  }
+  if (action.type === "GET_RIVERS") {
+    return { ...state, displayRivers: action.rivers };
+  }
 };

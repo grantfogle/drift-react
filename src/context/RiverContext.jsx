@@ -1,4 +1,4 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useState, useReducer, useEffect } from "react";
 import { riverData, watershedData, userFavorited } from "./riverData";
 import { riverStateReducer } from "../reducers/riverStateReducer";
 
@@ -7,11 +7,11 @@ export const RiverContext = createContext();
 const riverDashboardState = {
   rivers: riverData,
   watershed: watershedData,
-  displayRivers: riverData,
+  displayRivers: [],
   showRiverTable: false,
   searchByRiver: "",
   searchByWatershed: "",
-  userFavorites: userFavorited
+  userFavorites: []
 };
 
 const RiverProvider = ({ children }) => {
@@ -19,10 +19,6 @@ const RiverProvider = ({ children }) => {
     riverStateReducer,
     riverDashboardState
   );
-
-  // make api call here
-  // river search
-  // river search state
 
   return (
     <RiverContext.Provider value={{ riverState, dispatch }}>
