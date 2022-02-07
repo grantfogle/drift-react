@@ -4,10 +4,46 @@ const FavoritesService = {
     return fetch(favoritesUrl).then(response => response.json());
   },
   addFavorite: (userId, riverId) => {
-    // delete
+    const favoriteRiversURL = "http://localhost:8080/api/favorite";
+    const favoriteBody = {
+      userId,
+      riverId
+    };
+    return fetch(favoriteRiversURL, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(favoriteBody)
+    }).then(response => {
+      return response.json();
+    });
   },
   deleteFavorite: (userId, riverId) => {
-    // delete
+    const favoriteRiversURL = "http://localhost:8080/api/favorite";
+    const favoriteBody = {
+      userId,
+      riverId
+    };
+    return fetch(favoriteRiversURL, {
+      method: "DELETE",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      redirect: "follow",
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(favoriteBody)
+    }).then(response => {
+      return response.json();
+    });
   }
 };
 

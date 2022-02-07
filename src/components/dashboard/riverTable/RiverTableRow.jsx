@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { RiverContext } from "../../../context/RiverContext";
 import RiverAlert from "./riverAlert/RiverAlert";
 import RiverGraph from "./riverGraph/RiverGraph";
+import FavoritesService from "../../../services/favorites.service";
 
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -65,15 +66,21 @@ const RiverTableRow = riverData => {
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
-          setFavorite(false);
-          dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
+          // ( ) need to get user id
+          FavoritesService.deleteFavorite(2, usgsId).then(res => {
+            setFavorite(false);
+            dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
+          });
         }}
       />
     ) : (
       <StarOutlineIcon
+        // ( ) need to get user id
         onClick={() => {
-          setFavorite(true);
-          dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
+          FavoritesService.addFavorite(2, usgsId).then(res => {
+            setFavorite(true);
+            dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
+          });
         }}
       />
     );
