@@ -29,7 +29,7 @@ export const riverStateReducer = (state, action) => {
   if (action.type === "SHOW_FAVORITES") {
     return {
       ...state,
-      displayRivers: action.payload.favorites
+      userFavorites: action.payload.favorites
     };
   }
 

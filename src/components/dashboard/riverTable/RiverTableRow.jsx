@@ -78,6 +78,7 @@ const RiverTableRow = riverData => {
         // ( ) need to get user id
         onClick={() => {
           FavoritesService.addFavorite(2, usgsId).then(res => {
+            console.log("bing", res);
             setFavorite(true);
             dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
           });

@@ -1,13 +1,17 @@
 const FavoritesService = {
   getUserFavorites: userId => {
     const favoritesUrl = `http://localhost:8080/api/users-favorites/${userId}`;
-    return fetch(favoritesUrl).then(response => response.json());
+    return fetch(favoritesUrl)
+      .then(response => {
+        return response.json();
+      })
+      .then(res => console.log(res));
   },
   addFavorite: (userId, riverId) => {
     const favoriteRiversURL = "http://localhost:8080/api/favorite";
     const favoriteBody = {
       userId,
-      riverId
+      usgsId: riverId
     };
     return fetch(favoriteRiversURL, {
       method: "POST",
