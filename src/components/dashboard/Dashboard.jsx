@@ -29,7 +29,7 @@ const Dashboard = ({ userId }) => {
   const getUserFavorites = async () => {
     await FavoritesService.getUserFavorites(userId).then(res => {
       console.log(res);
-      dispatch({ type: "SHOW_FAVORITES", favorites: res });
+      // dispatch({ type: "SHOW_FAVORITES", favorites: res });
     });
   };
 

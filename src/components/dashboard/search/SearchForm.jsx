@@ -9,8 +9,8 @@ import RiversService from "../../../services/rivers.service";
 import { RiverContext } from "../../../context/RiverContext";
 
 const SearchForm = ({ searchRivers }) => {
-  const [riverValue, setRiverValue] = useState("");
-  const [watershedValue, setWatershedValue] = useState("");
+  const [riverValue, setRiverValue] = useState(null);
+  const [watershedValue, setWatershedValue] = useState(null);
   const { riverState, dispatch } = useContext(RiverContext);
 
   const filterOptions = createFilterOptions({
