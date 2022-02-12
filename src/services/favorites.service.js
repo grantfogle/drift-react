@@ -1,11 +1,9 @@
 const FavoritesService = {
   getUserFavorites: userId => {
-    const favoritesUrl = `http://localhost:8080/api/users-favorites/${userId}`;
-    return fetch(favoritesUrl)
-      .then(response => {
-        return response.json();
-      })
-      .then(res => console.log(res));
+    const favoritesUrl = `http://localhost:8080/api/favorites/${userId}`;
+    return fetch(favoritesUrl).then(response => {
+      return response.json();
+    });
   },
   addFavorite: (userId, riverId) => {
     const favoriteRiversURL = "http://localhost:8080/api/favorite";

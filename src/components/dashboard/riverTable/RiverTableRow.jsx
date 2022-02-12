@@ -17,7 +17,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 // import Stack from "@mui/material/Stack";
 // import Chip from "@mui/material/Chip";
 
-const RiverTableRow = ({ favorite, riverData }) => {
+const RiverTableRow = ({ favoriteStatus, riverData }) => {
   const {
     name,
     geoTag,
@@ -62,7 +62,7 @@ const RiverTableRow = ({ favorite, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favorite ? (
+    return favoriteStatus ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {

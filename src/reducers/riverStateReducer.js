@@ -26,10 +26,10 @@ export const riverStateReducer = (state, action) => {
     };
   }
 
-  if (action.type === "SHOW_FAVORITES") {
+  if (action.type === "SET_FAVORITES") {
     return {
       ...state,
-      userFavorites: action.payload.favorites
+      userFavorites: action.payload.rivers
     };
   }
 
@@ -37,6 +37,14 @@ export const riverStateReducer = (state, action) => {
     return {
       ...state,
       displayRivers: state.rivers
+    };
+  }
+
+  if (action.type === "SHOW_FAVORITES") {
+    console.log(state.userFavorites, state.displayRivers);
+    return {
+      ...state,
+      displayRivers: state.userFavorites
     };
   }
 
