@@ -19,12 +19,12 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 const RiverTableRow = ({ favorite, riverData }) => {
   const {
-    usgsId,
     name,
     geoTag,
     state,
     watershed,
     currentCFS,
+    usgsId,
     warmWater,
     lowWater,
     highWater,
@@ -33,7 +33,7 @@ const RiverTableRow = ({ favorite, riverData }) => {
 
   const { riverState, dispatch } = useContext(RiverContext);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [favorite, setFavorite] = useState(false);
+  // const [favorite, setFavorite] = useState(false);
 
   // useEffect(() => {
   //   if (riverState.userFavorites.includes(usgsId)) {
@@ -68,7 +68,7 @@ const RiverTableRow = ({ favorite, riverData }) => {
         onClick={() => {
           // ( ) need to get user id
           FavoritesService.deleteFavorite(2, usgsId).then(res => {
-            setFavorite(false);
+            // setFavorite(false);
             dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
           });
         }}
@@ -79,7 +79,7 @@ const RiverTableRow = ({ favorite, riverData }) => {
         onClick={() => {
           FavoritesService.addFavorite(2, usgsId).then(res => {
             console.log("bing", res);
-            setFavorite(true);
+            // setFavorite(true);
             dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
           });
         }}

@@ -65,7 +65,7 @@ const RiverTableView = ({ isLoadingRivers }) => {
                     <RiverTableRow
                       key={usgsId}
                       favoriteStatus={riverData[usgsId.favorite]}
-                      {...riverData[usgsId].river}
+                      riverData={riverData[usgsId].river}
                     />
                   );
                 }
