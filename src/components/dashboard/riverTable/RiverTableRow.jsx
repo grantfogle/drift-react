@@ -17,7 +17,7 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 // import Stack from "@mui/material/Stack";
 // import Chip from "@mui/material/Chip";
 
-const RiverTableRow = riverData => {
+const RiverTableRow = ({ favorite, riverData }) => {
   const {
     usgsId,
     name,
@@ -35,11 +35,11 @@ const RiverTableRow = riverData => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [favorite, setFavorite] = useState(false);
 
-  useEffect(() => {
-    if (riverState.userFavorites.includes(usgsId)) {
-      setFavorite(true);
-    }
-  });
+  // useEffect(() => {
+  //   if (riverState.userFavorites.includes(usgsId)) {
+  //     setFavorite(true);
+  //   }
+  // });
 
   const displayDropdown = () => {
     if (showDropdown) {

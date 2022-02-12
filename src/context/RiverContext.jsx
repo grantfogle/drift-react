@@ -5,7 +5,7 @@ import { riverStateReducer } from "../reducers/riverStateReducer";
 export const RiverContext = createContext();
 
 const riverDashboardState = {
-  rivers: riverData,
+  rivers: [],
   watershed: watershedData,
   displayRivers: [],
   showRiverTable: false,

@@ -15,14 +15,20 @@ const Dashboard = ({ userId }) => {
 
   useEffect(() => {
     getTopRivers();
-    getUserFavorites();
+    // getUserFavorites();
   }, []);
+
+  useEffect(() => {
+    if (value === "favorites") {
+      getUserFavorites();
+    }
+  }, [value]);
 
   const getTopRivers = async () => {
     setIsLoadingRivers(true);
     await RiversService.getTopRivers().then(res => {
       setIsLoadingRivers(false);
-      dispatch({ type: "GET_RIVERS", rivers: res });
+      dispatch({ type: "GET_RIVERS", payload: { rivers: res } });
     });
   };
 
