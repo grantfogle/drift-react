@@ -27,11 +27,11 @@ const FavoritesService = {
       return response.json();
     });
   },
-  deleteFavorite: (userId, riverId) => {
+  deleteFavorite: (userId, usgsId) => {
     const favoriteRiversURL = "http://localhost:8080/api/favorites";
     const favoriteBody = {
       userId,
-      riverId
+      usgsId
     };
     return fetch(favoriteRiversURL, {
       method: "DELETE",

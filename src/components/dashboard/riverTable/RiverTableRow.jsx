@@ -71,10 +71,8 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
-          console.log("clicked!");
-          // ( ) need to get user id
           FavoritesService.deleteFavorite(2, usgsId).then(res => {
-            // setFavorite(false);
+            setFavorite(false);
             dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
           });
         }}
