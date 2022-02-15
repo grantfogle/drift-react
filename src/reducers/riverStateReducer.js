@@ -12,7 +12,7 @@ export const riverStateReducer = (state, action) => {
   if (action.type === "ADD_TO_FAVORITES") {
     return {
       ...state,
-      userFavorites: [...state.userFavorites, action.payload.id]
+      userFavorites: [...state.userFavorites, action.payload]
     };
   }
 

@@ -6,7 +6,8 @@ const FavoritesService = {
     });
   },
   addFavorite: (userId, riverId) => {
-    const favoriteRiversURL = "http://localhost:8080/api/favorite";
+    console.log("bing");
+    const favoriteRiversURL = "http://localhost:8080/api/favorites";
     const favoriteBody = {
       userId,
       usgsId: riverId
@@ -27,7 +28,7 @@ const FavoritesService = {
     });
   },
   deleteFavorite: (userId, riverId) => {
-    const favoriteRiversURL = "http://localhost:8080/api/favorite";
+    const favoriteRiversURL = "http://localhost:8080/api/favorites";
     const favoriteBody = {
       userId,
       riverId

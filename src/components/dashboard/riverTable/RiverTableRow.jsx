@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { RiverContext } from "../../../context/RiverContext";
-import RiverAlert from "./riverAlert/RiverAlert";
+// import RiverAlert from "./riverAlert/RiverAlert";
 import RiverGraph from "./riverGraph/RiverGraph";
 import FavoritesService from "../../../services/favorites.service";
 
@@ -33,7 +33,14 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
 
   const { riverState, dispatch } = useContext(RiverContext);
   const [showDropdown, setShowDropdown] = useState(false);
-  // const [favorite, setFavorite] = useState(false);
+  const [favorite, setFavorite] = useState(false);
+
+  useEffect(() => {
+    console.log(favoriteStatus);
+    if (favoriteStatus) {
+      setFavorite(true);
+    }
+  }, []);
 
   // useEffect(() => {
   //   if (riverState.userFavorites.includes(usgsId)) {
@@ -45,13 +52,11 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     if (showDropdown) {
       return (
         <TableRow sx={{ width: "100%", height: "200px" }}>
-          {/* <Box sx={{ height: '100%', width: '100%' }}> */}
           <TableCell colSpan={5}>
             <Box>
               <RiverGraph />
             </Box>
           </TableCell>
-          {/* </Box> */}
         </TableRow>
       );
     }
@@ -62,10 +67,11 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favoriteStatus ? (
+    return favorite ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
+          console.log("clicked!");
           // ( ) need to get user id
           FavoritesService.deleteFavorite(2, usgsId).then(res => {
             // setFavorite(false);
@@ -77,10 +83,14 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
       <StarOutlineIcon
         // ( ) need to get user id
         onClick={() => {
+          console.log("clicked!");
           FavoritesService.addFavorite(2, usgsId).then(res => {
             console.log("bing", res);
-            // setFavorite(true);
-            dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
+            setFavorite(true);
+            dispatch({
+              type: "ADD_TO_FAVORITES",
+              payload: { [usgsId]: { riverData, favorite } }
+            });
           });
         }}
       />
