@@ -5,13 +5,12 @@ import { riverStateReducer } from "../reducers/riverStateReducer";
 export const RiverContext = createContext();
 
 const riverDashboardState = {
-  exploreRivers: [],
-  watershed: watershedData,
+  allRivers: [],
   displayRivers: [],
+  userFavorites: [],
   showRiverTable: false,
   searchByRiver: "",
-  searchByWatershed: "",
-  userFavorites: []
+  searchByWatershed: ""
 };
 
 const RiverProvider = ({ children }) => {

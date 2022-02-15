@@ -23,7 +23,7 @@ const Dashboard = ({ userId }) => {
     if (value === "favorites") {
       dispatch({ type: "SHOW_FAVORITES" });
     } else {
-      // dispatch({ type: "DISPLAY_TOP_RIVERS", payload: { rivers: res } });
+      dispatch({ type: "SHOW_EXPLORE" });
     }
   }, [value]);
 
@@ -36,6 +36,7 @@ const Dashboard = ({ userId }) => {
 
   const getUserFavorites = async () => {
     await FavoritesService.getUserFavorites(userId).then(res => {
+      console.log(res);
       dispatch({ type: "SET_FAVORITES", payload: { rivers: res } });
     });
   };

@@ -36,7 +36,7 @@ export const riverStateReducer = (state, action) => {
   if (action.type === "SHOW_EXPLORE") {
     return {
       ...state,
-      displayRivers: state.rivers
+      displayRivers: state.allRivers
     };
   }
 
@@ -68,7 +68,6 @@ export const riverStateReducer = (state, action) => {
   }
   if (action.type === "GET_RIVERS") {
     const riversResArr = action.payload.rivers;
-    console.log(riversResArr);
-    return { ...state, displayRivers: riversResArr, rivers: riversResArr };
+    return { ...state, displayRivers: riversResArr, allRivers: riversResArr };
   }
 };

@@ -6,7 +6,6 @@ const FavoritesService = {
     });
   },
   addFavorite: (userId, riverId) => {
-    console.log("bing");
     const favoriteRiversURL = "http://localhost:8080/api/favorites";
     const favoriteBody = {
       userId,
