@@ -67,27 +67,26 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favorite ? (
+    return favoriteStatus ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
           FavoritesService.deleteFavorite(2, usgsId).then(res => {
             setFavorite(false);
+            favoriteStatus = false;
             dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
           });
         }}
       />
     ) : (
       <StarOutlineIcon
-        // ( ) need to get user id
         onClick={() => {
-          console.log("clicked!");
           FavoritesService.addFavorite(2, usgsId).then(res => {
-            console.log("bing", res);
             setFavorite(true);
+            favoriteStatus = true;
             dispatch({
               type: "ADD_TO_FAVORITES",
-              payload: { [usgsId]: { riverData, favorite } }
+              payload: { [usgsId]: { river: riverData, favorite } }
             });
           });
         }}

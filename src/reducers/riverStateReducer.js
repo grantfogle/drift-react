@@ -1,4 +1,16 @@
 export const riverStateReducer = (state, action) => {
+  if (action.type === "GET_RIVERS") {
+    const riversResArr = action.payload.rivers;
+    return { ...state, displayRivers: riversResArr, allRivers: riversResArr };
+  }
+
+  if (action.type === "SET_FAVORITES") {
+    return {
+      ...state,
+      userFavorites: action.payload.rivers
+    };
+  }
+
   if (action.type === "RIVER_SELECT") {
     const filteredDisplayedRiver = state.rivers.filter(
       river => river.river === action.payload.riverName
@@ -17,23 +29,20 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "REMOVE_FROM_FAVORITES") {
-    const filteredUserFavorites = state.userFavorites.filter(
-      riverId => riverId !== action.payload.id
-    );
+    const filteredUserFavorites = state.userFavorites.filter(river => {
+      if (river.river.usgsId !== action.payload.usgsId) {
+        return river;
+      }
+    });
+
     return {
       ...state,
       userFavorites: filteredUserFavorites
     };
   }
 
-  if (action.type === "SET_FAVORITES") {
-    return {
-      ...state,
-      userFavorites: action.payload.rivers
-    };
-  }
-
   if (action.type === "SHOW_EXPLORE") {
+    console.log(state.userFavorites, state.displayRivers);
     return {
       ...state,
       displayRivers: state.allRivers
@@ -65,9 +74,5 @@ export const riverStateReducer = (state, action) => {
         return river;
       }
     });
-  }
-  if (action.type === "GET_RIVERS") {
-    const riversResArr = action.payload.rivers;
-    return { ...state, displayRivers: riversResArr, allRivers: riversResArr };
   }
 };

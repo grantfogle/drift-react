@@ -7,10 +7,7 @@ export const RiverContext = createContext();
 const riverDashboardState = {
   allRivers: [],
   displayRivers: [],
-  userFavorites: [],
-  showRiverTable: false,
-  searchByRiver: "",
-  searchByWatershed: ""
+  userFavorites: []
 };
 
 const RiverProvider = ({ children }) => {
