@@ -42,7 +42,6 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "SHOW_EXPLORE") {
-    console.log(state.userFavorites, state.displayRivers);
     return {
       ...state,
       displayRivers: state.allRivers
@@ -50,7 +49,6 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "SHOW_FAVORITES") {
-    console.log(state.userFavorites, state.displayRivers);
     return {
       ...state,
       displayRivers: state.userFavorites

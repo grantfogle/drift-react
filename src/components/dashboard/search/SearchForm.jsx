@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { SliderValueLabel } from "@mui/material";
 import { riversFilterList, watershedFilterList } from "./data/filters";
-import "./SearchForm.css";
 import RiversService from "../../../services/rivers.service";
 import { RiverContext } from "../../../context/RiverContext";
+import "./SearchForm.css";
 
 const SearchForm = ({ searchRivers }) => {
   const [riverValue, setRiverValue] = useState(null);
@@ -33,7 +33,6 @@ const SearchForm = ({ searchRivers }) => {
       dispatch({ type: "GET_RIVERS", rivers: filteredWatershedArr });
     } else {
       await RiversService.searchRivers(riverStrLC).then(res => {
-        console.log(res);
         dispatch({ type: "GET_RIVERS", rivers: res });
       });
     }
@@ -43,7 +42,6 @@ const SearchForm = ({ searchRivers }) => {
     setRiverValue("");
     const watershedStrLC = watershedStr.toLowerCase();
     await RiversService.searchWatershed(watershedStrLC).then(res => {
-      console.log(res);
       dispatch({ type: "GET_RIVERS", rivers: res });
     });
   };

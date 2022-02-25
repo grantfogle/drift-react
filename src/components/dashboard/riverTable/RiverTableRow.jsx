@@ -15,7 +15,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 import Stack from "@mui/material/Stack";
-// import Chip from "@mui/material/Chip";
 
 const RiverTableRow = ({ favoriteStatus, riverData }) => {
   const {
@@ -40,12 +39,6 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
       setFavorite(true);
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (riverState.userFavorites.includes(usgsId)) {
-  //     setFavorite(true);
-  //   }
-  // });
 
   const displayDropdown = () => {
     if (showDropdown) {
@@ -95,7 +88,6 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     if (warmWater || lowWater || highWater || iced) {
       return (
         <Stack>
-          {/* {warmWater ? <RiverAlert key={warmWater} alert={{ warmWater, color: 'info' }} /> : ''} */}
           {warmWater ? <RiverAlert key={'warmWater'} alert={'warmWater'} /> : ''}
           {iced ? <RiverAlert key={'iced'} alert={'iced'} /> : ''}
           {lowWater ? <RiverAlert key={'lowWater'} alert={'lowWater'} /> : ''}
@@ -105,40 +97,14 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     }
   }
 
-  //   const displayRiverAlerts = () => {
-  // warmWater,
-  // lowWater,
-  // highWater,
-  // iced
-  //     const alertArr = [
-  //       { warmWater, color: "info" },
-  //       { lowWater, color: "info" },
-  //       { highWater, color: "info" },
-  //       { iced, color: "info" }
-  //     ];
-  //     const alertStack = alertArr.map(alert => {
-  //       console.log(alert);
-  //       if (alert) {
-  //         return <RiverAlert key={alert} alert={alert} />;
-  //       }
-  //     });
-  //     return (
-  //       <Stack direction="row" spacing={1}>
-  //         {alertStack}
-  //       </Stack>
-  //     );
-  //   };
-
   return (
     <>
       <TableRow key={usgsId}>
         <TableCell>{displayFavoriteStatus()}</TableCell>
         <TableCell>
-          {/*on click send to map*/}
           {name} {geoTag}
         </TableCell>
         <TableCell>{currentCFS}</TableCell>
-        {/*show alerts on river status in pretty format, high h20, etc*/}
         <TableCell>{displayRiverAlerts()}</TableCell>
         <TableCell
           onClick={e =>
