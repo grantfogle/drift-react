@@ -59,7 +59,16 @@ const RiverTableView = ({ isLoadingRivers }) => {
             </TableHead>
             <TableBody>
               {riverState.displayRivers.map(riverData => {
-                return <RiverTableRow key={riverData.usgsId} {...riverData} />;
+                // const { river } = riverData;
+                for (let usgsId in riverData) {
+                  return (
+                    <RiverTableRow
+                      key={usgsId}
+                      favoriteStatus={riverData[usgsId].favorite}
+                      riverData={riverData[usgsId].river}
+                    />
+                  );
+                }
               })}
             </TableBody>
           </Table>

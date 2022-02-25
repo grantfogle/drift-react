@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { RiverContext } from "../../../context/RiverContext";
 import RiverAlert from "./riverAlert/RiverAlert";
 import RiverGraph from "./riverGraph/RiverGraph";
+import FavoritesService from "../../../services/favorites.service";
 
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
@@ -14,16 +15,15 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
 import Stack from "@mui/material/Stack";
-import Chip from "@mui/material/Chip";
 
-const RiverTableRow = riverData => {
+const RiverTableRow = ({ favoriteStatus, riverData }) => {
   const {
-    usgsId,
     name,
     geoTag,
     state,
     watershed,
     currentCFS,
+    usgsId,
     warmWater,
     lowWater,
     highWater,
@@ -35,22 +35,20 @@ const RiverTableRow = riverData => {
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    if (riverState.userFavorites.includes(usgsId)) {
+    if (favoriteStatus) {
       setFavorite(true);
     }
-  });
+  }, []);
 
   const displayDropdown = () => {
     if (showDropdown) {
       return (
         <TableRow sx={{ width: "100%", height: "200px" }}>
-          {/* <Box sx={{ height: '100%', width: '100%' }}> */}
           <TableCell colSpan={5}>
             <Box>
               <RiverGraph />
             </Box>
           </TableCell>
-          {/* </Box> */}
         </TableRow>
       );
     }
@@ -65,55 +63,49 @@ const RiverTableRow = riverData => {
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
-          setFavorite(false);
-          dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
+          FavoritesService.deleteFavorite(2, usgsId).then(res => {
+            setFavorite(false);
+            dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
+          });
         }}
       />
     ) : (
-      <StarOutlineIcon
-        onClick={() => {
-          setFavorite(true);
-          dispatch({ type: "ADD_TO_FAVORITES", payload: { usgsId } });
-        }}
-      />
-    );
+        <StarOutlineIcon
+          onClick={() => {
+            FavoritesService.addFavorite(2, usgsId).then(res => {
+              setFavorite(true);
+              dispatch({
+                type: "ADD_TO_FAVORITES",
+                payload: { [usgsId]: { river: riverData, favorite } }
+              });
+            });
+          }}
+        />
+      );
   };
 
-  //   const displayRiverAlerts = () => {
-  // warmWater,
-  // lowWater,
-  // highWater,
-  // iced
-  //     const alertArr = [
-  //       { warmWater, color: "info" },
-  //       { lowWater, color: "info" },
-  //       { highWater, color: "info" },
-  //       { iced, color: "info" }
-  //     ];
-  //     const alertStack = alertArr.map(alert => {
-  //       console.log(alert);
-  //       if (alert) {
-  //         return <RiverAlert key={alert} alert={alert} />;
-  //       }
-  //     });
-  //     return (
-  //       <Stack direction="row" spacing={1}>
-  //         {alertStack}
-  //       </Stack>
-  //     );
-  //   };
+  const displayRiverAlerts = () => {
+    if (warmWater || lowWater || highWater || iced) {
+      return (
+        <Stack>
+          {warmWater ? <RiverAlert key={'warmWater'} alert={'warmWater'} /> : ''}
+          {iced ? <RiverAlert key={'iced'} alert={'iced'} /> : ''}
+          {lowWater ? <RiverAlert key={'lowWater'} alert={'lowWater'} /> : ''}
+          {highWater ? <RiverAlert key={'highWater'} alert={'highWater'} /> : ''}
+        </Stack>
+      )
+    }
+  }
 
   return (
     <>
       <TableRow key={usgsId}>
         <TableCell>{displayFavoriteStatus()}</TableCell>
         <TableCell>
-          {/*on click send to map*/}
           {name} {geoTag}
         </TableCell>
         <TableCell>{currentCFS}</TableCell>
-        {/*show alerts on river status in pretty format, high h20, etc*/}
-        <TableCell>{/* {displayRiverAlerts()} */}</TableCell>
+        <TableCell>{displayRiverAlerts()}</TableCell>
         <TableCell
           onClick={e =>
             showDropdown ? setShowDropdown(false) : setShowDropdown(true)

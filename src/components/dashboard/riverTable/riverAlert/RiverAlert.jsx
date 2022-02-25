@@ -4,7 +4,6 @@ import ThermostatIcon from "@mui/icons-material/Thermostat";
 import WaterIcon from "@mui/icons-material/Water";
 import OpacityIcon from "@mui/icons-material/Opacity";
 import WarningIcon from "@mui/icons-material/Warning";
-import WaterfallChartIcon from "@mui/icons-material/WaterfallChart";
 
 const riverAlertObj = {
   offColor: {
@@ -27,7 +26,7 @@ const riverAlertObj = {
     label: "High Water",
     icon: <WaterIcon />
   },
-  lowFlows: {
+  lowWater: {
     color: "warning",
     label: "Low Flows",
     icon: <OpacityIcon />

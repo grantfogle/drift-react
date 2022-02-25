@@ -21,7 +21,8 @@ const Main = () => {
       <>
         <TopNavigation />
         <div className="main">
-          <Dashboard />
+          {/* <Dashboard userId={auth.user.userId}/> */}
+          <Dashboard userId={2} />
         </div>
       </>
     ) : (

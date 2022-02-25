@@ -14,7 +14,6 @@ const dataSevenDays = [
     { name: '11/23/21', cfs: 1290 },
 ];
 
-
 const dataThirtyDays = [
     { name: '11/17/21', cfs: 1200 },
     { name: '11/18/21', cfs: 1100 },
@@ -52,8 +51,6 @@ const dataThirtyDays = [
 
 const RiverGraph = ({ riverId }) => {
     const [selectedChip, setSelectedChip] = useState(true);
-    // fetch river data
-    // fetch weather
 
     const handleDateChipClick = () => {
         setSelectedChip(!selectedChip);
