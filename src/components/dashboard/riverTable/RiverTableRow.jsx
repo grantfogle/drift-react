@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { RiverContext } from "../../../context/RiverContext";
-// import RiverAlert from "./riverAlert/RiverAlert";
+import RiverAlert from "./riverAlert/RiverAlert";
 import RiverGraph from "./riverGraph/RiverGraph";
 import FavoritesService from "../../../services/favorites.service";
 
@@ -14,7 +14,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 
-// import Stack from "@mui/material/Stack";
+import Stack from "@mui/material/Stack";
 // import Chip from "@mui/material/Chip";
 
 const RiverTableRow = ({ favoriteStatus, riverData }) => {
@@ -36,7 +36,6 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    console.log(favoriteStatus);
     if (favoriteStatus) {
       setFavorite(true);
     }
@@ -67,32 +66,44 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favoriteStatus ? (
+    return favorite ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
           FavoritesService.deleteFavorite(2, usgsId).then(res => {
             setFavorite(false);
-            favoriteStatus = false;
             dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
           });
         }}
       />
     ) : (
-      <StarOutlineIcon
-        onClick={() => {
-          FavoritesService.addFavorite(2, usgsId).then(res => {
-            setFavorite(true);
-            favoriteStatus = true;
-            dispatch({
-              type: "ADD_TO_FAVORITES",
-              payload: { [usgsId]: { river: riverData, favorite } }
+        <StarOutlineIcon
+          onClick={() => {
+            FavoritesService.addFavorite(2, usgsId).then(res => {
+              setFavorite(true);
+              dispatch({
+                type: "ADD_TO_FAVORITES",
+                payload: { [usgsId]: { river: riverData, favorite } }
+              });
             });
-          });
-        }}
-      />
-    );
+          }}
+        />
+      );
   };
+
+  const displayRiverAlerts = () => {
+    if (warmWater || lowWater || highWater || iced) {
+      return (
+        <Stack>
+          {/* {warmWater ? <RiverAlert key={warmWater} alert={{ warmWater, color: 'info' }} /> : ''} */}
+          {warmWater ? <RiverAlert key={'warmWater'} alert={'warmWater'} /> : ''}
+          {iced ? <RiverAlert key={'iced'} alert={'iced'} /> : ''}
+          {lowWater ? <RiverAlert key={'lowWater'} alert={'lowWater'} /> : ''}
+          {highWater ? <RiverAlert key={'highWater'} alert={'highWater'} /> : ''}
+        </Stack>
+      )
+    }
+  }
 
   //   const displayRiverAlerts = () => {
   // warmWater,
@@ -128,7 +139,7 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
         </TableCell>
         <TableCell>{currentCFS}</TableCell>
         {/*show alerts on river status in pretty format, high h20, etc*/}
-        <TableCell>{/* {displayRiverAlerts()} */}</TableCell>
+        <TableCell>{displayRiverAlerts()}</TableCell>
         <TableCell
           onClick={e =>
             showDropdown ? setShowDropdown(false) : setShowDropdown(true)

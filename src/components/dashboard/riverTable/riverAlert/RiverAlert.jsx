@@ -27,7 +27,7 @@ const riverAlertObj = {
     label: "High Water",
     icon: <WaterIcon />
   },
-  lowFlows: {
+  lowWater: {
     color: "warning",
     label: "Low Flows",
     icon: <OpacityIcon />
