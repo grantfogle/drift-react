@@ -46,6 +46,13 @@ const FavoritesService = {
     }).then(response => {
       return response.json();
     });
+  },
+  checkIfFavorited: (rivers, favorites) => {
+    // loop through rivers
+    // loop through favorites
+    // if river is favorited
+    // return favorite as true,
+    // update dispatch state
   }
 };
 

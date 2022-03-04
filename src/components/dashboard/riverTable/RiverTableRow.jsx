@@ -59,7 +59,7 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favorite ? (
+    return favoriteStatus ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
