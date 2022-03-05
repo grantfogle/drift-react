@@ -28,7 +28,7 @@ const SearchForm = ({ searchRivers }) => {
     let riverStrLC = riverStr.toLowerCase();
     if (watershedValue) {
       let filteredWatershedArr = riverState.displayRivers.filter(river => {
-        return river.name === riverStrLC;
+        return river.name === riverStr;
       });
       dispatch({ type: "GET_RIVERS", rivers: filteredWatershedArr });
     } else {
@@ -55,20 +55,13 @@ const SearchForm = ({ searchRivers }) => {
             id="combo-box-demo"
             options={riversFilterList}
             value={riverValue}
+            isOptionEqualToValue={(option, value) => option.label === value}
             onChange={(event, value) => {
               if (value === null) {
                 value = "";
                 setRiverValue("");
-                // rivContext.dispatch({
-                //   type: "RIVERS_RESET",
-                //   payload: { watershedFilter: watershedValue }
-                // });
               }
               if (value.label) {
-                // rivContext.dispatch({
-                //   type: "RIVER_SELECT",
-                //   payload: { riverName: value.label }
-                // });
                 setRiverValue(value.label);
                 sendRiverSearch(value.label);
               }
@@ -80,17 +73,14 @@ const SearchForm = ({ searchRivers }) => {
             disablePortal
             id="combo-box-demo"
             options={watershedFilterList}
+            isOptionEqualToValue={(option, value) => option.label === value}
             value={watershedValue}
             onChange={(event, value) => {
               if (value === null) {
                 value = "";
-                setRiverValue("");
+                setWatershedValue("");
               }
               if (value.label) {
-                // rivContext.dispatch({
-                //   type: "WATERSHED_SELECT",
-                //   payload: { watershed: value.label }
-                // });
                 setWatershedValue(value.label);
                 sendWatershedSearch(value.label);
               }
