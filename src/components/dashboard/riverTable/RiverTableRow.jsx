@@ -40,6 +40,24 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     }
   }, []);
 
+  const favoriteRiver = () => {
+    FavoritesService.addFavorite(2, usgsId).then(res => {
+      setFavorite(true);
+      dispatch({
+        type: "ADD_TO_FAVORITES",
+        riverData
+      });
+    });
+  }
+  const unfavoriteRiver = () => {
+    FavoritesService.deleteFavorite(2, usgsId).then(res => {
+      dispatch({
+        type: "REMOVE_FROM_FAVORITES",
+        riverData
+      });
+    })
+  }
+
   const displayDropdown = () => {
     if (showDropdown) {
       return (
@@ -59,26 +77,17 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
   };
 
   const displayFavoriteStatus = () => {
-    return favorite ? (
+    return favoriteStatus ? (
       <StarIcon
         sx={{ color: "#f1c40f" }}
         onClick={() => {
-          FavoritesService.deleteFavorite(2, usgsId).then(res => {
-            setFavorite(false);
-            dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
-          });
+          unfavoriteRiver()
         }}
       />
     ) : (
         <StarOutlineIcon
           onClick={() => {
-            FavoritesService.addFavorite(2, usgsId).then(res => {
-              setFavorite(true);
-              dispatch({
-                type: "ADD_TO_FAVORITES",
-                payload: { [usgsId]: { river: riverData, favorite } }
-              });
-            });
+            favoriteRiver()
           }}
         />
       );

@@ -1,7 +1,22 @@
 export const riverStateReducer = (state, action) => {
   if (action.type === "GET_RIVERS") {
-    const riversResArr = action.payload.rivers;
-    return { ...state, displayRivers: riversResArr, allRivers: riversResArr };
+    if (state.userFavorites.length > 0) {
+      const favoriteRiverIdsArr = [];
+      const favoritedRiverIds = state.userFavorites.forEach(river => favoriteRiverIdsArr.push(river.usgsId));
+      
+      const loadedRiversFavoriteStatus = action.rivers.map(river => {
+        if (favoriteRiverIdsArr.includes(river.usgsId)) {
+          river.favorite = true;
+          return river;
+        }
+        return river
+      });
+
+
+      return { ...state, displayRivers: loadedRiversFavoriteStatus, allRivers: loadedRiversFavoriteStatus };
+    }
+
+    return { ...state, displayRivers: action.rivers, allRivers: action.rivers };
   }
 
   if (action.type === "SET_FAVORITES") {
@@ -22,36 +37,56 @@ export const riverStateReducer = (state, action) => {
   }
 
   if (action.type === "ADD_TO_FAVORITES") {
+    console.log(action.riverData)
+    action.riverData.favorite = true;
+    console.log(action.riverData)
     return {
       ...state,
-      userFavorites: [...state.userFavorites, action.payload]
-    };
+      userFavorites: [...state.userFavorites, action.riverData]
+    }
   }
 
   if (action.type === "REMOVE_FROM_FAVORITES") {
-    const filteredUserFavorites = state.userFavorites.filter(river => {
-      if (river.river.usgsId !== action.payload.usgsId) {
+    action.riverData.favorite = false;
+    const removedFromFavorites = state.userFavorites.filter(river => river.usgsId !== action.riverData.usgsId);
+    const unfavoriteFromAllRivers = state.allRivers.map(river => {
+      if (river.usgsId === action.riverData.usgsId) {
+        river.favorite = false;
         return river;
       }
+      return river;
     });
-
-    return {
-      ...state,
-      userFavorites: filteredUserFavorites
-    };
+    
+    if (state.tabShowing === 'explore') {
+      return {
+        ...state,
+        userFavorites: removedFromFavorites,
+        allRivers: unfavoriteFromAllRivers,
+        displayRivers: state.allRivers,
+      }
+    } else {
+      return {
+        ...state,
+        userFavorites: removedFromFavorites,
+        allRivers: unfavoriteFromAllRivers,
+        displayRivers: removedFromFavorites,
+      }
+    }
   }
 
   if (action.type === "SHOW_EXPLORE") {
     return {
       ...state,
-      displayRivers: state.allRivers
+      displayRivers: state.allRivers,
+      tabShowing: 'explore'
     };
   }
 
   if (action.type === "SHOW_FAVORITES") {
     return {
       ...state,
-      displayRivers: state.userFavorites
+      displayRivers: state.userFavorites,
+      tabShowing: 'favorites'
     };
   }
 
