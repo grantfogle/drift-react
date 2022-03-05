@@ -50,16 +50,12 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     });
   }
   const unfavoriteRiver = () => {
-  //   FavoritesService.deleteFavorite(2, usgsId).then(res => {
-  //     setFavorite(false);
-  //     dispatch({ type: "REMOVE_FROM_FAVORITES", payload: { usgsId } });
-  //   });
-  // }}
-    dispatch({
-      type: "REMOVE_FROM_FAVORITES",
-      riverData
-    });
-    // Favore
+    FavoritesService.deleteFavorite(2, usgsId).then(res => {
+      dispatch({
+        type: "REMOVE_FROM_FAVORITES",
+        riverData
+      });
+    })
   }
 
   const displayDropdown = () => {

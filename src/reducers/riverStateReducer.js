@@ -1,7 +1,22 @@
 export const riverStateReducer = (state, action) => {
   if (action.type === "GET_RIVERS") {
-    const riversResArr = action.payload.rivers;
-    return { ...state, displayRivers: riversResArr, allRivers: riversResArr };
+    if (state.userFavorites.length > 0) {
+      const favoriteRiverIdsArr = [];
+      const favoritedRiverIds = state.userFavorites.forEach(river => favoriteRiverIdsArr.push(river.usgsId));
+      
+      const loadedRiversFavoriteStatus = action.rivers.map(river => {
+        if (favoriteRiverIdsArr.includes(river.usgsId)) {
+          river.favorite = true;
+          return river;
+        }
+        return river
+      });
+
+
+      return { ...state, displayRivers: loadedRiversFavoriteStatus, allRivers: loadedRiversFavoriteStatus };
+    }
+
+    return { ...state, displayRivers: action.rivers, allRivers: action.rivers };
   }
 
   if (action.type === "SET_FAVORITES") {
