@@ -49,6 +49,14 @@ const FavoritesService = {
   },
   checkIfFavorited: (rivers, favorites) => {
     // loop through rivers
+    rivers.forEach(river => {
+      // favorites.map(favorite => {
+      //   if (river.id === favorite.id) {
+      //     return true
+      //   }
+      // });
+    })
+    
     // loop through favorites
     // if river is favorited
     // return favorite as true,
