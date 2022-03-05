@@ -62,7 +62,7 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
     if (showDropdown) {
       return (
         <TableRow sx={{ width: "100%", height: "200px" }}>
-          <TableCell colSpan={5}>
+          <TableCell colSpan={6}>
             <Box>
               <RiverGraph />
             </Box>
@@ -115,17 +115,19 @@ const RiverTableRow = ({ favoriteStatus, riverData }) => {
         </TableCell>
         <TableCell>{currentCFS}</TableCell>
         <TableCell>{displayRiverAlerts()}</TableCell>
-        <TableCell
-          onClick={e =>
-            showDropdown ? setShowDropdown(false) : setShowDropdown(true)
-          }
-        >
+        <TableCell>
           <Typography
             sx={{ display: "flex", alignItems: "center" }}
             variant="body2"
           >
-            {watershed} {displayUpDownArrow()}
+            {watershed}
           </Typography>
+        </TableCell>
+        <TableCell
+          onClick={e =>
+            showDropdown ? setShowDropdown(false) : setShowDropdown(true)
+          }>
+          {displayUpDownArrow()}
         </TableCell>
       </TableRow>
       {displayDropdown()}

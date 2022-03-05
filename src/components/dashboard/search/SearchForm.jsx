@@ -55,6 +55,7 @@ const SearchForm = ({ searchRivers }) => {
             id="combo-box-demo"
             options={riversFilterList}
             value={riverValue}
+            isOptionEqualToValue={(option, value) => option.label === value}
             onChange={(event, value) => {
               if (value === null) {
                 value = "";
@@ -72,6 +73,7 @@ const SearchForm = ({ searchRivers }) => {
             disablePortal
             id="combo-box-demo"
             options={watershedFilterList}
+            isOptionEqualToValue={(option, value) => option.label === value}
             value={watershedValue}
             onChange={(event, value) => {
               if (value === null) {

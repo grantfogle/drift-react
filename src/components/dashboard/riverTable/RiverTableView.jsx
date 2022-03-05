@@ -52,9 +52,10 @@ const RiverTableView = ({ isLoadingRivers }) => {
               <TableRow>
                 <TableCell>Favorite</TableCell>
                 <TableCell align="left">River</TableCell>
-                <TableCell align="left">Current Flow (cfs)</TableCell>
+                <TableCell align="left">Flow (cfs)</TableCell>
                 <TableCell align="left">Status</TableCell>
                 <TableCell align="left">Watershed</TableCell>
+                <TableCell align="left"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
