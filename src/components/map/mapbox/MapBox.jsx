@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import MapSideNav from "./MapSideNav";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from "!mapbox-gl";
 // import the mapbox styles
@@ -25,7 +26,7 @@ const MapBoxMap = () => {
     // https://docs.mapbox.com/mapbox-gl-js/api/map/
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: "mapbox://styles/mapbox/outdoors-v11",
       center: [-107.0785, 39.3725],
       zoom: 10,
     })
@@ -34,7 +35,10 @@ const MapBoxMap = () => {
     return () => map.remove()
   }, [])
 
-  return <div ref={mapContainer} style={{ width: "100%", height: "100vh" }} />
+  return (<>
+    <div ref={mapContainer} style={{ width: "80%", height: "100vh" }}/>
+    {/* <MapSideNav /> */}
+  </>);
 }
 
 export default MapBoxMap;
