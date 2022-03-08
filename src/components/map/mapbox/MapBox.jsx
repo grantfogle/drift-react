@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import MapSideNav from "./MapSideNav";
+import MapBoxSearch from "./MapBoxSearch";
+import TopNavigation from "../../topNavigation/TopNavigation";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from "!mapbox-gl";
 // import the mapbox styles
 // alternatively can use a link tag in the head of public/index.html
 // see https://docs.mapbox.com/mapbox-gl-js/api/
 import "mapbox-gl/dist/mapbox-gl.css";
+import { flexbox } from "@mui/system";
 
 
 
@@ -35,10 +38,32 @@ const MapBoxMap = () => {
     return () => map.remove()
   }, [])
 
-  return (<>
-    <div ref={mapContainer} style={{ width: "80%", height: "100vh" }}/>
-    {/* <MapSideNav /> */}
-  </>);
+  return (
+    <div style={{ width: "100%", height: "100%", display: 'flex', flexDirection: 'column',  }}>
+      <TopNavigation/>
+      <div ref={mapContainer} style={{ width: "100%", height: "90%" }}/>
+    </div>
+  );
 }
 
 export default MapBoxMap;
+
+// generic notes
+
+// creating data sources
+  // symbols
+  /* NOTES ON COMPONENT DESIGN
+  - A user can search a river
+  - A user can search a watershed
+  - a user can click a river and view up to date flow info
+  - And nearby rivers (data + line) 
+  - A user can view public access points (symbol)
+  - A user can view up to date fishing regulations (data)
+  - A user can view public land: federal, state, blm, city/county (fill)
+  - A user can view fly shops (symbol)
+  - A user can view boat ramps (symbol)
+  - A user can view trails (symbol)
+  - A user can view campsites (symbol)
+  - A user can view easements (symbol)
+
+  */
