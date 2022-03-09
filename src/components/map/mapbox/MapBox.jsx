@@ -29,7 +29,8 @@ const MapBoxMap = () => {
     // https://docs.mapbox.com/mapbox-gl-js/api/map/
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/mapbox/outdoors-v11",
+      // style: "mapbox://styles/mapbox/xoutdoors-v11",
+      style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
       center: [-107.0785, 39.3725],
       zoom: 10,
     })
@@ -65,5 +66,14 @@ export default MapBoxMap;
   - A user can view trails (symbol)
   - A user can view campsites (symbol)
   - A user can view easements (symbol)
+  */
 
+  /*
+    Component Needs
+    > Navigation
+    > User Profile ( settings )
+    > Search Box
+    > River Popup
+    > Legend
+    > Map Tools (tbd)
   */
