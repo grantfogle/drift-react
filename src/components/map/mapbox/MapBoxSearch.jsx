@@ -9,7 +9,7 @@ export default function MapBoxSearch() {
       disablePortal
       id="combo-box-demo"
       options={riversFilterList}
-      sx={{ width: 300 }}
+      sx={{ width: 300, backgroundColor: '#fff' }}
       renderInput={(params) => <TextField {...params} label="River" />}
     />
   );

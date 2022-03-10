@@ -10,8 +10,6 @@ import mapboxgl from "!mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { flexbox } from "@mui/system";
 
-
-
 // Grab the access token from your Mapbox account
 // I typically like to store sensitive things like this
 // in a .env file
@@ -33,16 +31,17 @@ const MapBoxMap = () => {
       style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
       center: [-107.0785, 39.3725],
       zoom: 10,
-    })
+    });
 
     // cleanup function to remove map on unmount
-    return () => map.remove()
-  }, [])
+    return () => map.remove();
+  }, []);
 
   return (
-    <div style={{ width: "100%", height: "100%", display: 'flex', flexDirection: 'column',  }}>
+    <div style={{ width: "100%", height: "100%", position: 'absolute', display: 'flex', flexDirection: 'column', alignItems:'flex-end' }}>
       <TopNavigation/>
-      <div ref={mapContainer} style={{ width: "100%", height: "90%" }}/>
+      <MapBoxSearch style={{width: "300px", height: "56px", position: 'relative'}}/>
+      <div ref={mapContainer} style={{ width: "100%", height: "90%", position: 'relative', top: -56, left: 0, zIndex: -2 }}/>
     </div>
   );
 }
