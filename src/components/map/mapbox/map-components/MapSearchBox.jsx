@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import {riversFilterList} from '../../dashboard/search/data/filters'
+import {riversFilterList} from '../../../dashboard/search/data/filters'
 
 export default function MapBoxSearch() {
   return (

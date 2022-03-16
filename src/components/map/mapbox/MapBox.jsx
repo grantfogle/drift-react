@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import MapSideNav from "./MapSideNav";
-import MapBoxSearch from "./MapBoxSearch";
+import MapSideNav from "./map-components/MapSideNav";
+import MapBoxSearch from "./map-components/MapSearchBox";
 import TopNavigation from "../../topNavigation/TopNavigation";
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from "!mapbox-gl";
@@ -27,7 +27,7 @@ const MapBoxMap = () => {
     // https://docs.mapbox.com/mapbox-gl-js/api/map/
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      style: "mapbox://styles/grantjfogle/cl0svc578005h14nxo5fv3b9c",
+      style: "mapbox://styles/grantjfogle/cl0svc578005h14nxo5fv3b9c?optimize=true",
       // style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
       center: [-107.0785, 39.3725],
       zoom: 10,
@@ -38,10 +38,11 @@ const MapBoxMap = () => {
   }, []);
 
   return (
-    <div style={{ width: "100%", height: "100%", position: 'absolute', display: 'flex', flexDirection: 'column', alignItems:'flex-end' }}>
-      <TopNavigation/>
-      <MapBoxSearch style={{width: "300px", height: "56px", position: 'relative'}}/>
-      <div ref={mapContainer} style={{ width: "100%", height: "90%", position: 'relative', top: -56, left: 0, zIndex: -2 }}/>
+    <div style={{ width: "100%", height: "100%", position: 'absolute', display: 'flex' }}>
+      {/* <MapBoxSearch style={{width: "300px", height: "56px", position: 'relative'}}/> */}
+      <MapSideNav />
+      {/* <MapBoxSearch /> */}
+      <div ref={mapContainer} style={{ width: "100%", height: "100vh", position: 'relative', top: -56, left: 0 }}/>
     </div>
   );
 }
