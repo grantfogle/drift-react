@@ -21,8 +21,8 @@ import MailIcon from '@mui/icons-material/Mail';
 
 const MapSideNav = () => {
   return (
-    <Box sx={{ display: 'flex', width: '120px', height: '100vh', backgroundColor: '#fff', padding: 0, margin: 0 }}>
-      <nav aria-label="main mailbox folders">
+    <Box sx={{ width: '200px', height: '100vh', backgroundColor: '#fff'}}>
+      <nav aria-label="main mailbox folders" sx={{width: '200px'}}>
         <List>
           <ListItem disablePadding>
             <ListItemButton>
@@ -32,7 +32,7 @@ const MapSideNav = () => {
               <ListItemText primary="Inbox" />
             </ListItemButton>
           </ListItem>
-          <Divider />
+          <Divider/>
           <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
