@@ -27,8 +27,8 @@ const MapBoxMap = () => {
     // https://docs.mapbox.com/mapbox-gl-js/api/map/
     const map = new mapboxgl.Map({
       container: mapContainer.current,
-      // style: "mapbox://styles/mapbox/xoutdoors-v11",
-      style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
+      style: "mapbox://styles/grantjfogle/cl0svc578005h14nxo5fv3b9c",
+      // style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
       center: [-107.0785, 39.3725],
       zoom: 10,
     });
