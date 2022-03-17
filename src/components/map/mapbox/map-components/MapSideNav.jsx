@@ -1,46 +1,80 @@
 import * as React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import Divider from '@mui/material/Divider';
+import PersonIcon from '@mui/icons-material/Person';
+import WaterIcon from '@mui/icons-material/Water';
+import LayersIcon from '@mui/icons-material/Layers';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import SettingsIcon from '@mui/icons-material/Settings';
+import StarIcon from '@mui/icons-material/Star';
+import { Link } from "react-router-dom";
 
 const MapSideNav = () => {
   return (
     <Box sx={{ width: '200px', height: '100vh', backgroundColor: '#fff'}}>
       <nav aria-label="main mailbox folders" sx={{width: '200px'}}>
         <List>
-          <ListItem disablePadding>
+        <ListItem disablePadding sx={{height: '100px'}}>
             <ListItemButton>
               <ListItemIcon>
-                <InboxIcon />
+                <WaterIcon />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary="Drift" />
             </ListItemButton>
           </ListItem>
           <Divider/>
-          <ListItem disablePadding>
+        <ListItem disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                <MailIcon />
+                <ArrowBackIcon />
               </ListItemIcon>
-              <ListItemText primary="Drafts" />
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <ListItemText primary="Back" />
+              </Link>
             </ListItemButton>
           </ListItem>
+          <Divider/>
+          <ListItem disablePadding sx={{height: '100px'}}>
+            <ListItemButton>
+              <ListItemIcon>
+                <StarIcon />
+              </ListItemIcon>
+              <ListItemText primary="Favorites" />
+            </ListItemButton>
+          </ListItem>
+          <Divider/>
+          <ListItem disablePadding sx={{height: '100px'}}>
+            <ListItemButton>
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Layers" />
+            </ListItemButton>
+          </ListItem>
+          <Divider/>
+          <ListItem disablePadding sx={{height: '100px'}}>
+            <ListItemButton>
+              <ListItemIcon>
+                <SettingsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Settings" />
+            </ListItemButton>
+          </ListItem>
+          <Divider/>
+          <ListItem disablePadding sx={{height: '100px'}}>
+            <ListItemButton>
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary="My Account" />
+            </ListItemButton>
+          </ListItem>
+          <Divider/>
         </List>
       </nav>
     </Box>
