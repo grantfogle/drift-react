@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import Map from "../map/Map";
 import "./style.css";
 
 import TopNavigation from "../topNavigation/TopNavigation";
